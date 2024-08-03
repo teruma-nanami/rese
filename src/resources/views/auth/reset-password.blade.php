@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-  <h2>パスワードの再設定</h2>
+  <h2>Password Reset</h2>
   <form method="POST" action="{{ route('password.update') }}" class="form">
     @csrf
     <input type="hidden" name="token" value="{{ $request->route('token') }}">
@@ -19,8 +19,10 @@
         <label for="password_confirmation">確認用パスワード</label>
         <input id="password_confirmation" type="password" name="password_confirmation" required>
       </div>
+      <div class="form__button">
+        <button type="submit">パスワードを再設定</button>
+      </div>
     </div>
-    <button type="submit">パスワードを再設定</button>
   </form>
 </div>
 @endsection
