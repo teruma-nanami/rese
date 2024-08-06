@@ -15,6 +15,10 @@ class RestaurantController extends Controller
         $restaurants = Restaurant::all();
         return view('admin.restaurants', compact('restaurants'));
     }
+    public function show(Restaurant $restaurant)
+    {
+        return view('customer.detail', compact('restaurant'));
+    }
     public function create()
     {
         if (Auth::user()->role == 'admin') {

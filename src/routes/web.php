@@ -11,6 +11,8 @@ use Laravel\Fortify\Http\Controllers\NewPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,9 +46,28 @@ Route::post('/reset-password', [NewPasswordController::class, 'store'])->name('p
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [HomeController::class, 'index']);
+    // 飲食店の詳細ページのルート
+    Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show'])->name('restaurants.show');
+
+    // 予約のルート
+    Route::post('/reservations/{restaurant}', [ReservationController::class, 'store'])->name('reservations.store');
+    Route::get('/reservations/done', [ReservationController::class, 'done'])->name('reservations.done');
+// プロフィールページのルート
+    Route::get('/profile', [HomeController::class, 'showProfile'])->name('profile.show');
+    Route::post('/profile', [HomeController::class, 'updateProfile'])->name('profile.update');
+
+// マイページのルート
+    Route::get('/mypage', [HomeController::class, 'showMyPage'])->name('mypage.show');
+    Route::get('/restaurants/{restaurant}/reserve', [ReservationController::class, 'create'])->name('customer.reserve');
+    Route::post('/restaurants/{restaurant}/reserve', [ReservationController::class, 'store'])->name('customer.reserve.store');
+    Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
+    Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::post('/favorites/{restaurant}', [HomeController::class, 'addFavorite'])->name('favorites.add');
+    Route::delete('/favorites/{restaurant}', [HomeController::class, 'removeFavorite'])->name('favorites.remove');
+
 
 // Route::middleware(['auth', 'verified', 'admin'])->group(function () {
-    Route::get('/admin/manage-owners', [AdminController::class, 'index'])->name('admin.manage-owners');
+    Route::get('/admin/', [AdminController::class, 'index'])->name('admin.manage-owners');
     Route::post('/admin/manage-owners/{user}', [AdminController::class, 'updateRole'])->name('admin.update-role');
     Route::get('/admin/manage-owners/search', [AdminController::class, 'search'])->name('admin.search');
     Route::get('/admin/make-owner', [AdminController::class, 'createOwnerForm'])->name('admin.make-owner');
