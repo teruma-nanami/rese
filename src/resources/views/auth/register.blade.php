@@ -36,6 +36,7 @@
       <div class="form__button">
         <button type="submit">登録</button>
       </div>
+    </div>
   </form>
 </div>
 @endsection

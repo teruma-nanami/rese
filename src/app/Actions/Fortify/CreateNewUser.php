@@ -38,6 +38,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
             'password_digest' => Hash::make($input['password']),
             'email_verified_at' => null,
+            'role' => 'customer', // デフォルトで 'customer' として設定
         ]);
     }
 }
