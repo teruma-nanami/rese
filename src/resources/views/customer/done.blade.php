@@ -4,8 +4,9 @@
 
 @section('content')
 <div class="container">
-    <h1>予約が完了しました</h1>
-    <p>ご予約ありがとうございます。予約内容の確認はマイページから行えます。</p>
-    <a href="{{ route('mypage.show') }}" class="btn btn-primary">マイページへ</a>
+  <div class="thanks__inner">
+    <p>ご予約ありがとうございます</p>
+    <a href="{{ route('mypage.show') }}">マイページ</a>
+  </div>
 </div>
 @endsection

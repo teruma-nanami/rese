@@ -77,6 +77,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/admin/create', [RestaurantController::class, 'store'])->name('admin.store-restaurant');
     Route::get('/admin/restaurants/{restaurant}/edit', [RestaurantController::class, 'edit'])->name('admin.edit-restaurant');
     Route::post('/admin/restaurants/{restaurant}', [RestaurantController::class, 'update'])->name('admin.update-restaurant');
+    Route::delete('/admin/users/{user}', [AdminController::class, 'deleteUser'])->name('admin.delete-user');
     Route::delete('/admin/restaurants/{restaurant}', [RestaurantController::class, 'destroy'])->name('admin.delete-restaurant');
 // });
 

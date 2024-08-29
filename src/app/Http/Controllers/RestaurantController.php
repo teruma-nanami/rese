@@ -63,13 +63,13 @@ class RestaurantController extends Controller
             return redirect()->route('owner.create-restaurant')->with('success', 'レストランが作成されました。');
         }
     }
+
     public function edit(Restaurant $restaurant)
     {
         {
             if (Auth::id() !== $restaurant->owner_id) {
                 return redirect()->route('owner.create-restaurant')->with('error', '権限がありません。');
             }
-    
             return view('owner.edit_restaurant', compact('restaurant'));
         }
     }

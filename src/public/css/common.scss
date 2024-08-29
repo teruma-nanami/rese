@@ -1,12 +1,4 @@
-html {
-  height: 100%;
-  margin: 0;
-}
 body {
-  display: grid;
-  grid-template-rows: 70px minmax(540px, 1fr) 60px;
-  height: 100%;
-  align-content: space-between;
   background-color: #eee;
 }
 a {
@@ -122,12 +114,31 @@ a {
 }
 main {
   grid-row: 2;
-  margin-top: 60px;
+  margin-top: 10px;
 }
 .footer {
   grid-row: 3;
   text-align: center;
   padding: 20px 0;
+}
+
+.alert-success {
+  background-color: #cfc;
+  text-align: center;
+  color: #060;
+  font-size: 20px;
+  padding: 20px 0;
+}
+
+.alert-danger {
+  background-color: #fcc;
+  text-align: center;
+  color: #600;
+  font-size: 20px;
+  padding: 20px 0;
+  li {
+    list-style: none;
+  }
 }
 
 // ページネーション
