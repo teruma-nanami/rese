@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
@@ -22,20 +23,21 @@
           <span class="sp-only">Menu</span>
       </button>
       <div class="header__nav" id="navMenu">
-        <button class="header__close" id="closeButton">&times;</button>
+        <button class="header__close" id="closeButton">×</button>
         <ul>
-          <li><a href="{{ asset('/') }}">Home</a></li>
+          <li><a href="{{ url('/') }}">Home</a></li>
+          <li><a href="{{ route('mypage.show') }}">Mypage</a></li>
+          <li><a href="{{ route('profile.show') }}">Profile</a></li>
           <li>
             <form action="/logout" method="POST">
                 @csrf
                 <button type="submit">Logout</button>
             </form>
           </li>
-          <li><a href="{{ asset('customer.users') }}">Mypage</a></li>
         </ul>
       </div>
     </div>
-</header>
+  </header>
   <main>
     @yield('content')
   </main>

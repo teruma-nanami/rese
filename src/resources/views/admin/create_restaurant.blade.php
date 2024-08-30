@@ -19,45 +19,45 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.store-restaurant') }}" method="POST">
+    <form action="{{ route('admin.store-restaurant') }}" method="POST" class="form">
         @csrf
-        <div class="form-group">
+        <div class="form__text">
             <label for="name">名前</label>
-            <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+            <input type="text" name="name" value="{{ old('name') }}" required>
         </div>
-        <div class="form-group">
+        <div class="form__text">
             <label for="address">住所</label>
-            <input type="text" name="address" class="form-control" value="{{ old('address') }}" required>
+            <input type="text" name="address" value="{{ old('address') }}" required>
         </div>
-        <div class="form-group">
+        <div class="form__text">
             <label for="phone_number">電話番号</label>
-            <input type="text" name="phone_number" class="form-control" value="{{ old('phone_number') }}" required>
+            <input type="text" name="phone_number" value="{{ old('phone_number') }}" required>
         </div>
-        <div class="form-group">
+        <div class="form__text">
             <label for="image_url">画像URL</label>
-            <input type="text" name="image_url" class="form-control" value="{{ old('image_url') }}">
+            <input type="text" name="image_url" value="{{ old('image_url') }}">
         </div>
-        <div class="form-group">
+        <div class="form__text">
             <label for="email">メールアドレス</label>
-            <input type="email" name="email" class="form-control" value="{{ old('email') }}">
+            <input type="email" name="email" value="{{ old('email') }}">
         </div>
-        <div class="form-group">
+        <div class="form__text">
             <label for="area">エリア</label>
-            <input type="text" name="area" class="form-control" value="{{ old('area') }}" required>
+            <input type="text" name="area" value="{{ old('area') }}" required>
         </div>
-        <div class="form-group">
+        <div class="form__text">
             <label for="cuisine_type">料理の種類</label>
-            <input type="text" name="cuisine_type" class="form-control" value="{{ old('cuisine_type') }}" required>
+            <input type="text" name="cuisine_type" value="{{ old('cuisine_type') }}" required>
         </div>
-        <div class="form-group">
+        <div class="form__text">
             <label for="owner_id">オーナー</label>
-            <select name="owner_id" class="form-control" required>
+            <select name="owner_id" required>
                 @foreach ($owners as $owner)
                     <option value="{{ $owner->id }}">{{ $owner->name }}</option>
                 @endforeach
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">作成</button>
+        <button type="submit" class="form__button">作成</button>
     </form>
 </div>
 @endsection

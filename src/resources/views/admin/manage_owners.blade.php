@@ -1,19 +1,19 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
+<div class="admin__container">
     <h1>ユーザー管理</h1>
     @if (session('success'))
-        <div class="alert alert-success">
+        <div class="alert-success">
             {{ session('success') }}
         </div>
     @endif
 
-    <form action="{{ route('admin.search') }}" method="GET" class="form-inline mb-3">
-        <div class="form-group">
-            <input type="text" name="email" class="form-control" placeholder="メールアドレスで検索" value="{{ request('email') }}">
+    <form action="{{ route('admin.search') }}" method="GET" class="form">
+        <div class="form__inner">
+            <input type="text" name="email" class="form__search" placeholder="メールアドレスで検索" value="{{ request('email') }}">
+            <button type="submit" class="form__search-button">検索</button>
         </div>
-        <button type="submit" class="btn btn-primary ml-2">検索</button>
     </form>
 
     <table class="table">
@@ -40,7 +40,11 @@
                         </form>
                     </td>
                     <td>
-                        <!-- 他の操作があればここに追加 -->
+                        <form action="{{ route('admin.delete-user', $user) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">削除</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

@@ -1,12 +1,4 @@
-html {
-  height: 100%;
-  margin: 0;
-}
 body {
-  display: grid;
-  grid-template-rows: 70px minmax(540px, 1fr) 60px;
-  height: 100%;
-  align-content: space-between;
   background-color: #eee;
 }
 a {
@@ -89,6 +81,7 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
     ul {
       list-style: none;
       padding: 0;
@@ -122,12 +115,31 @@ a {
 }
 main {
   grid-row: 2;
-  margin-top: 60px;
+  margin-top: 10px;
 }
 .footer {
   grid-row: 3;
   text-align: center;
   padding: 20px 0;
+}
+
+.alert-success {
+  background-color: #cfc;
+  text-align: center;
+  color: #060;
+  font-size: 20px;
+  padding: 20px 0;
+}
+
+.alert-danger {
+  background-color: #fcc;
+  text-align: center;
+  color: #600;
+  font-size: 20px;
+  padding: 20px 0;
+  li {
+    list-style: none;
+  }
 }
 
 // ページネーション
@@ -177,6 +189,13 @@ svg.w-5.h-5 {
     font-size: 18px;
     border: none;
   }
+}
+
+th,td {
+  text-align: left;
+  padding: 20px 35px;
+  font-size: 18px;
+  border: none;
 }
 
 @media (min-width:768px) {

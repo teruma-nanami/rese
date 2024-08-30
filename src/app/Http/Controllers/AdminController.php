@@ -56,4 +56,11 @@ class AdminController extends Controller
 
         return redirect()->route('admin.manage-owners')->with('success', '飲食店オーナーが作成されました。');
     }
+
+    public function deleteUser(User $user)
+    {
+        $user->delete();
+
+        return redirect()->route('admin.manage-owners')->with('success', 'ユーザーが削除されました。');
+    }
 }

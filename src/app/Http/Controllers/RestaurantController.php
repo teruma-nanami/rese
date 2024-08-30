@@ -15,6 +15,10 @@ class RestaurantController extends Controller
         $restaurants = Restaurant::all();
         return view('admin.restaurants', compact('restaurants'));
     }
+    public function show(Restaurant $restaurant)
+    {
+        return view('customer.detail', compact('restaurant'));
+    }
     public function create()
     {
         if (Auth::user()->role == 'admin') {
@@ -59,13 +63,13 @@ class RestaurantController extends Controller
             return redirect()->route('owner.create-restaurant')->with('success', 'レストランが作成されました。');
         }
     }
+
     public function edit(Restaurant $restaurant)
     {
         {
             if (Auth::id() !== $restaurant->owner_id) {
                 return redirect()->route('owner.create-restaurant')->with('error', '権限がありません。');
             }
-    
             return view('owner.edit_restaurant', compact('restaurant'));
         }
     }
