@@ -78,13 +78,4 @@ th, td {
   border: 1px solid #f60;
   color: #f60;
   transition: 0.2s;
-}
-
-@media (min-width: 768px) {
-  th, td {
-    text-align: left;
-    padding: 20px 35px;
-    font-size: 18px;
-    border: none;
-  }
 }/*# sourceMappingURL=admin.css.map */

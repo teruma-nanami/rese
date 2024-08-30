@@ -85,6 +85,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 .header__nav ul {
   list-style: none;
@@ -190,6 +191,13 @@ svg.w-5.h-5 {
   background-color: #2384cf;
   text-decoration: none;
   text-align: center;
+  font-size: 18px;
+  border: none;
+}
+
+th, td {
+  text-align: left;
+  padding: 20px 35px;
   font-size: 18px;
   border: none;
 }

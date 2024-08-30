@@ -39,6 +39,7 @@
 		</div>
 		<div class="favorite__card">
 			<h2>お気に入り店舗</h2>
+			<div class="favorite__inner">
 			@if($favoriteRestaurants->isNotEmpty())
 				@foreach($favoriteRestaurants as $restaurant)
 					<div class="card__inner">
@@ -58,6 +59,7 @@
 						</div>
 					</div>
 				@endforeach
+			</div>
 			@else
 				<p>お気に入りの飲食店はありません。</p>
 			@endif

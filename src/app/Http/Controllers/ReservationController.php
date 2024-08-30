@@ -12,7 +12,7 @@ class ReservationController extends Controller
 {
     public function create(Restaurant $restaurant)
     {
-        return view('customer.reserve', compact('restaurant'));
+        return view('customer.reservation', compact('restaurant'));
     }
 
     public function store(Request $request, Restaurant $restaurant)

@@ -81,6 +81,7 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
     ul {
       list-style: none;
       padding: 0;
@@ -188,6 +189,13 @@ svg.w-5.h-5 {
     font-size: 18px;
     border: none;
   }
+}
+
+th,td {
+  text-align: left;
+  padding: 20px 35px;
+  font-size: 18px;
+  border: none;
 }
 
 @media (min-width:768px) {

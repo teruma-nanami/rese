@@ -2,7 +2,7 @@ h1 {
   margin: 0 auto;
   text-align: center;
   font-weight: 400;
-  padding: 40px 0;
+  padding: 20px 0;
 }
 h1 a {
   color: #00f;
@@ -21,17 +21,24 @@ h1 span {
   margin: 0 20px;
 }
 
+h2 {
+  margin-left: 7px;
+}
+
 .flex__inner {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   max-width: 1440px;
   margin: 0 auto;
 }
 
 .card__inner {
   width: 340px;
-  margin: 0 8px 30px 8px;
+  margin: 10px auto;
   background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
 }
 .card__inner img {
   width: 100%;
@@ -64,24 +71,26 @@ h1 span {
 }
 
 .form {
-  text-align: center;
   max-width: 864px;
   margin: 0 auto 40px;
 }
 .form__text {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin: 20px 0;
   padding: 10px;
-  font-size: 18px;
+}
+.form__text label {
+  display: block;
+  font-size: 14px;
+  margin: 0 0 5px 5px;
 }
 .form__text input, .form__text select {
-  width: 80%;
+  width: 100%;
   padding: 10px;
 }
 .form__button {
-  margin-top: 20px;
+  display: block;
+  width: 180px;
+  margin: 0 auto;
   padding: 8px 30px;
   font-size: 18px;
   background-color: #eee;
@@ -96,15 +105,15 @@ h1 span {
 
 .reservation-comfirm__card {
   width: 600px;
-  margin-right: 50px;
+  margin: 0 auto;
 }
 .reservation-comfirm__inner {
   background-color: #325cf8;
-  margin: 30px 0;
+  margin: 30px 10px;
   color: #fff;
   border-radius: 8px;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
-  padding-bottom: 20px;
+  padding: 10px;
 }
 .reservation-comfirm__inner h3 {
   padding: 20px 0 0 30px;
@@ -117,6 +126,27 @@ h1 span {
 }
 .detail__card img {
   width: 100%;
+}
+
+.reservation__card {
+  display: none;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.reservation__link {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.favorite__card {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.favorite__inner {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .thanks__inner {
@@ -146,12 +176,47 @@ h1 span {
 }
 
 @media (min-width: 768px) {
-  .detail__card {
-    margin: 0 60px 0 0;
+  .form {
+    text-align: center;
+    max-width: 864px;
+    margin: 0 auto 40px;
+  }
+  .form__text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    padding: 10px;
+    font-size: 18px;
+  }
+  .form__text input, .form__text select {
+    width: 80%;
+    padding: 10px;
+  }
+  .form__button {
+    margin-top: 20px;
+    padding: 8px 30px;
+    font-size: 18px;
+    background-color: #eee;
+    border: 1px solid #325cf8;
+    color: #325cf8;
+  }
+  .form__button:hover {
+    border: 1px solid #f60;
+    color: #f60;
+    transition: 0.2s;
+  }
+  .card__inner {
+    margin: 0 10px 20px 10px;
+  }
+  .reservation-comfirm__inner {
+    margin: 20px 0;
   }
   .reservation__card {
+    display: block;
     position: relative;
     width: 600px;
+    height: 640px;
     background-color: #325cf8;
     border-radius: 8px;
     color: #fff;
@@ -180,10 +245,7 @@ h1 span {
     color: #fff;
     transition: 0.2s;
   }
-  th, td {
-    text-align: left;
-    padding: 20px 35px;
-    font-size: 18px;
-    border: none;
+  .reservation__link {
+    display: none;
   }
 }/*# sourceMappingURL=index.css.map */
