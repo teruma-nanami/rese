@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/owner.css') }}" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
@@ -24,16 +25,15 @@
       <div class="header__nav" id="navMenu">
         <button class="header__close" id="closeButton">×</button>
         <ul>
-          <li><a href="{{ asset('/') }}">Home</a></li>
+          <li><a href="{{ asset('/owner') }}">Home</a></li>
           <li><a href="{{ route('owner.create-restaurant') }}">レストラン作成</a></li>
           {{-- <li><a href="{{ route('owner.edit-restaurant', ['restaurant' => Auth::user()->restaurant->id]) }}">レストラン編集</a></li> --}}
           <li>
             <form action="/logout" method="POST">
                 @csrf
-                <button type="submit">Logout</button>
+                <button type="submit" class="logout__button">Logout</button>
             </form>
           </li>
-          <li><a href="{{ asset('customer.users') }}">Mypage</a></li>
         </ul>
       </div>
     </div>

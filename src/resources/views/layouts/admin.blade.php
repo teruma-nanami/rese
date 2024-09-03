@@ -25,7 +25,7 @@
       <div class="header__nav" id="navMenu">
         <button class="header__close" id="closeButton">×</button>
         <ul>
-          <li><a href="{{ asset('/') }}">Home</a></li>
+          <li><a href="{{ route('admin.manage-owners') }}">Home</a></li>
           <li><a href="{{ route('admin.manage-owners') }}">ユーザー管理</a></li>
           <li><a href="{{ route('admin.make-owner') }}">オーナー作成</a></li>
           <li><a href="{{ route('admin.restaurants') }}">レストラン一覧</a></li>
@@ -33,10 +33,9 @@
           <li>
             <form action="/logout" method="POST">
                 @csrf
-                <button type="submit">Logout</button>
+                <button type="submit" class="logout__button">Logout</button>
             </form>
           </li>
-          <li><a href="{{ asset('customer.users') }}">Mypage</a></li>
         </ul>
       </div>
     </div>

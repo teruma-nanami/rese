@@ -15,7 +15,8 @@
             <th>エリア</th>
             <th>料理の種類</th>
             <th>オーナー</th>
-            <th>操作</th>
+            <th>編集</th>
+            <th>削除</th>
         </tr>
         @foreach ($restaurants as $restaurant)
             <tr>
@@ -23,12 +24,11 @@
                 <td>{{ $restaurant->area }}</td>
                 <td>{{ $restaurant->cuisine_type }}</td>
                 <td>{{ $restaurant->owner->name }}</td>
-                <td>
-                    <a href="{{ route('admin.edit-restaurant', $restaurant) }}">編集</a>
-                    <form action="{{ route('admin.delete-restaurant', $restaurant) }}" method="POST">
+                <td><a href="{{ route('admin.edit-restaurant', $restaurant) }}" class="form__button">編集</a></td>
+                <td><form action="{{ route('admin.delete-restaurant', $restaurant) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
                         @csrf
                         @method('DELETE')
-                        <button type="submit">削除</button>
+                        <button type="submit" class="form__button--danger">削除</button>
                     </form>
                 </td>
             </tr>

@@ -30,13 +30,13 @@ Fortify::verifyEmailView(function () {
 });
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-$request->fulfill();
-return redirect('/');
+    $request->fulfill();
+    return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/resend', function (Request $request) {
-$request->user()->sendEmailVerificationNotification();
-return back()->with('message', 'Verification link sent!');
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
@@ -65,34 +65,32 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/favorites/{restaurant}', [HomeController::class, 'addFavorite'])->name('favorites.add');
     Route::delete('/favorites/{restaurant}', [HomeController::class, 'removeFavorite'])->name('favorites.remove');
 
-
-// Route::middleware(['auth', 'verified', 'admin'])->group(function () {
-    Route::get('/admin/', [AdminController::class, 'index'])->name('admin.manage-owners');
-    Route::post('/admin/manage-owners/{user}', [AdminController::class, 'updateRole'])->name('admin.update-role');
-    Route::get('/admin/manage-owners/search', [AdminController::class, 'search'])->name('admin.search');
-    Route::get('/admin/make-owner', [AdminController::class, 'createOwnerForm'])->name('admin.make-owner');
-    Route::post('/admin/make-owner', [AdminController::class, 'storeOwner'])->name('admin.store-owner');
-    Route::get('/admin/restaurants', [RestaurantController::class, 'index'])->name('admin.restaurants');
-    Route::get('/admin/create', [RestaurantController::class, 'create'])->name('admin.create-restaurant');
-    Route::post('/admin/create', [RestaurantController::class, 'store'])->name('admin.store-restaurant');
-    Route::get('/admin/restaurants/{restaurant}/edit', [RestaurantController::class, 'edit'])->name('admin.edit-restaurant');
-    Route::post('/admin/restaurants/{restaurant}', [RestaurantController::class, 'update'])->name('admin.update-restaurant');
-    Route::delete('/admin/users/{user}', [AdminController::class, 'deleteUser'])->name('admin.delete-user');
-    Route::delete('/admin/restaurants/{restaurant}', [RestaurantController::class, 'destroy'])->name('admin.delete-restaurant');
-// });
-
-// Route::middleware(['auth', 'verified', 'owner'])->group(function () {
-    Route::get('/owner', [HomeController::class, 'owner'])->name('owner.dashboard');
-    Route::get('/owner/create-restaurant', [RestaurantController::class, 'create'])->name('owner.create-restaurant');
-    Route::post('/owner/create-restaurant', [RestaurantController::class, 'store'])->name('owner.store-restaurant');
-    Route::get('/owner/restaurants/{restaurant}/edit', [RestaurantController::class, 'edit'])->name('owner.edit-restaurant');
-    Route::post('/owner/restaurants/{restaurant}/confirm', [RestaurantController::class, 'confirm'])->name('owner.confirm-restaurant');
-    Route::post('/owner/restaurants/{restaurant}', [RestaurantController::class, 'update'])->name('owner.update-restaurant');
-// });
-
     Route::post('/logout', function () {
         Auth::logout();
         return redirect('/login');
     })->name('logout');
 });
 
+Route::middleware(['auth', 'verified', 'admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.manage-owners');
+    Route::post('/admin/manage-owners/{user}', [AdminController::class, 'updateRole'])->name('admin.update-role');
+    Route::get('/admin/manage-owners/search', [AdminController::class, 'search'])->name('admin.search');
+    Route::get('/admin/make-owner', [AdminController::class, 'createOwnerForm'])->name('admin.make-owner');
+    Route::post('/admin/make-owner', [AdminController::class, 'storeOwner'])->name('admin.store-owner');
+    Route::get('/admin/restaurants', [AdminController::class, 'indexRestaurants'])->name('admin.restaurants');
+    Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.create-restaurant');
+    Route::post('/admin/create', [AdminController::class, 'store'])->name('admin.store-restaurant');
+    Route::get('/admin/restaurants/{restaurant}/edit', [AdminController::class, 'edit'])->name('admin.edit-restaurant');
+    Route::post('/admin/restaurants/{restaurant}', [AdminController::class, 'update'])->name('admin.update-restaurant');
+    Route::delete('/admin/users/{user}', [AdminController::class, 'deleteUser'])->name('admin.delete-user');
+    Route::delete('/admin/restaurants/{restaurant}', [AdminController::class, 'destroy'])->name('admin.delete-restaurant');
+});
+
+Route::middleware(['auth', 'verified', 'owner'])->group(function () {
+    Route::get('/owner', [HomeController::class, 'owner'])->name('owner.dashboard');
+    Route::get('/owner/create-restaurant', [RestaurantController::class, 'create'])->name('owner.create-restaurant');
+    Route::post('/owner/create-restaurant', [RestaurantController::class, 'store'])->name('owner.store-restaurant');
+    Route::get('/owner/restaurants/{restaurant}/edit', [RestaurantController::class, 'edit'])->name('owner.edit-restaurant');
+    Route::post('/owner/restaurants/{restaurant}/confirm', [RestaurantController::class, 'confirm'])->name('owner.confirm-restaurant');
+    Route::post('/owner/restaurants/{restaurant}', [RestaurantController::class, 'update'])->name('owner.update-restaurant');
+});
