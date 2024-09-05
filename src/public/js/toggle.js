@@ -1,43 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
-  const startButton = document.getElementById('start');
-  const endButton = document.getElementById('end');
-
-  // ページ読み込み時にボタンの状態を設定
-  if (localStorage.getItem('workStarted') === 'true') {
-    startButton.disabled = true;
-    endButton.disabled = false;
-  } else {
-    startButton.disabled = false;
-    endButton.disabled = true;
-  }
-
-  startButton.addEventListener('click', function() {
-    localStorage.setItem('workStarted', 'true');
-  });
-
-  endButton.addEventListener('click', function() {
-    localStorage.removeItem('workStarted');
-    localStorage.removeItem('breakStarted');
-  });
-
-  const breakStartButton = document.getElementById('breakStart');
-  const breakEndButton = document.getElementById('breakEnd');
-
-
-  // ページ読み込み時にボタンの状態を設定
-  if (localStorage.getItem('breakStarted') === 'true') {
-    breakStartButton.disabled = true;
-    breakEndButton.disabled = false;
-  } else {
-    breakStartButton.disabled = false;
-    breakEndButton.disabled = true;
-  }
-
-  breakStartButton.addEventListener('click', function() {
-    localStorage.setItem('breakStarted', 'true');
-  });
-
-  breakEndButton.addEventListener('click', function() {
-    localStorage.removeItem('breakStarted');
+  document.querySelectorAll('.favorite-button').forEach(button => {
+      button.addEventListener('click', function(event) {
+          event.preventDefault();
+          const form = this.closest('form');
+          fetch(form.action, {
+              method: form.method,
+              body: new FormData(form),
+              headers: {
+                  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+              }
+          }).then(response => {
+              if (response.ok) {
+                  return response.text();
+              }
+              throw new Error('Network response was not ok.');
+          }).then(text => {
+              if (text.includes('added')) {
+                  this.classList.add('btn-danger');
+                  this.classList.remove('btn-outline-danger');
+              } else if (text.includes('removed')) {
+                  this.classList.add('btn-outline-danger');
+                  this.classList.remove('btn-danger');
+              }
+          }).catch(error => {
+              console.error('There was a problem with the fetch operation:', error);
+          });
+      });
   });
 });

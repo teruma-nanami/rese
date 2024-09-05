@@ -47,5 +47,30 @@ class ReservationController extends Controller
     {
         return view('customer.done');
     }
+
+    public function edit(Reservation $reservation)
+    {
+        return view('customer.edit', compact('reservation'));
+    }
+
+    public function update(Request $request, Reservation $reservation)
+    {
+        $request->validate([
+            'reservation_date' => 'required|date',
+            'reservation_time' => 'required|time',
+            'number_of_people' => 'required|integer|min=1',
+        ]);
+
+        $reservation->update($request->all());
+
+        return redirect()->route('mypage.show')->with('status', '予約が更新されました');
+    }
+
+    public function destroy(Reservation $reservation)
+    {
+        $reservation->delete();
+
+        return redirect()->route('mypage.show')->with('status', '予約が削除されました');
+    }
 }
 

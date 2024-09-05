@@ -15,7 +15,13 @@
 </head>
 <body>
   <header class="header">
+    @if (session('status'))
+    <div class="alert alert-success">
+      {{ session('status') }}
+    </div>
+  @endif
     <div class="header__inner">
+
       <h1>
           <a href="/" class="header__logo">Rese</a>
       </h1>

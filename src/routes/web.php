@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // 予約のルート
     Route::post('/reservations/{restaurant}', [ReservationController::class, 'store'])->name('reservations.store');
     Route::get('/reservations/done', [ReservationController::class, 'done'])->name('reservations.done');
+    Route::get('/reservations/{reservation}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');
+    Route::put('/reservations/{reservation}', [ReservationController::class, 'update'])->name('reservations.update');
+    Route::delete('/reservations/{reservation}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 // プロフィールページのルート
     Route::get('/profile', [HomeController::class, 'showProfile'])->name('profile.show');
     Route::post('/profile', [HomeController::class, 'updateProfile'])->name('profile.update');
@@ -76,8 +80,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/restaurants/{restaurant}/reserve', [ReservationController::class, 'store'])->name('customer.reserve.store');
     Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
     Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
-    Route::post('/favorites/{restaurant}', [HomeController::class, 'addFavorite'])->name('favorites.add');
-    Route::delete('/favorites/{restaurant}', [HomeController::class, 'removeFavorite'])->name('favorites.remove');
+    Route::post('/favorites/toggle/{restaurant}', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
 
     Route::post('/logout', function () {
         Auth::logout();
