@@ -3,12 +3,6 @@
 @section('content')
 <div class="admin__container">
     <h1>レストラン一覧</h1>
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <table class="admin__table">
         <tr>
             <th>店名</th>

@@ -111,6 +111,7 @@ h2 {
     margin: 0 auto;
   }
   &__inner {
+    position: relative;
     background-color: #325cf8;
     margin: 30px 10px;
     color: #fff;
@@ -122,6 +123,30 @@ h2 {
       font-weight: normal;
       }
     }
+    &__button {
+      background-color: #325cf8;
+      border: 1px solid #fff;
+      color: #fff;
+      border-radius: 200px;
+      padding: 5px 9px 7px 9px;
+      line-height: none;
+    }
+    &__button:hover {
+      opacity: .5;
+    }
+}
+
+.change{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  a {
+    color: #fff;
+    margin-right: 20px;
+  }
+  a:hover {
+    opacity: .5;
+  }
 }
 
 .detail__card{
@@ -181,7 +206,29 @@ h2 {
   }
 }
 
+.btn-outline-danger {
+  color: #dc3545;
+  border-color: #dc3545;
+  background-color: transparent;
+}
 
+.btn-outline-danger:hover {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-danger {
+  color: #dc3545;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  color: #fff;
+  background-color: #c82333;
+  border-color: #bd2130;
+}
 
 @media (min-width:768px) {
   .form {

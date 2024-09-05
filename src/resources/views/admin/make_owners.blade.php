@@ -3,16 +3,6 @@
 @section('content')
 <div class="admin__container">
     <h1>飲食店オーナー作成</h1>
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <form action="{{ route('admin.store-owner') }}" method="POST" class="form">
         @csrf
         <div class="form__text">

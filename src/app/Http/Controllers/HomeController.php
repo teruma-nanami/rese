@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use App\Models\Favorite;
+use App\Models\User;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,32 +55,11 @@ class HomeController extends Controller
 
     public function showMyPage()
     {
-        $user = Auth::user();
-        $reservations = $user->reservations ?? collect();
-        $favoriteRestaurants = $user->favoriteRestaurants ?? collect();
-    
+        $user = auth()->user();
+        $reservations = $user->reservations()->where('reservation_date', '>=', now()->toDateString())->get(); // 予約情報を取得
+        $favoriteRestaurants = $user->favorites; // お気に入りのレストランを取得
+
         return view('customer.mypage', compact('user', 'reservations', 'favoriteRestaurants'));
-    }
-
-    // お気に入りの追加
-    public function addFavorite(Restaurant $restaurant)
-    {
-        Favorite::create([
-            'user_id' => Auth::id(),
-            'restaurant_id' => $restaurant->id,
-        ]);
-
-        return redirect()->back()->with('success', 'お気に入りに追加しました。');
-    }
-
-    // お気に入りの削除
-    public function removeFavorite(Restaurant $restaurant)
-    {
-        Favorite::where('user_id', Auth::id())
-                ->where('restaurant_id', $restaurant->id)
-                ->delete();
-
-        return redirect()->back()->with('success', 'お気に入りから削除しました。');
     }
 
     public function owner()

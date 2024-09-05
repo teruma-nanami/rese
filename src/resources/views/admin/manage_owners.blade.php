@@ -3,12 +3,6 @@
 @section('content')
 <div class="admin__container">
     <h1>ユーザー管理</h1>
-    @if (session('success'))
-        <div class="alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <form action="{{ route('admin.search') }}" method="GET" class="form">
         <div class="form__inner">
             <input type="text" name="email" class="form__search" placeholder="メールアドレスで検索" value="{{ request('email') }}">

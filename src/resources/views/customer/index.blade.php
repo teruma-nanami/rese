@@ -13,9 +13,11 @@
           <p>#{{ $restaurant->area }} #{{ $restaurant->cuisine_type }}</p>
           <div class="card__link">
             <a href="{{ route('restaurants.show', $restaurant) }}" class="btn btn-primary btn-sm">詳しくみる</a>
-            <form action="{{ route('favorites.add', $restaurant) }}" method="POST" style="display:inline;">
+            <form action="{{ route('favorites.toggle', $restaurant) }}" method="POST" style="display:inline;">
               @csrf
-              <button type="submit" class="btn btn-outline-danger btn-sm">❤️</button>
+              <button type="submit" class="btn btn-sm favorite-button {{ auth()->user()->favorites->contains($restaurant->id) ? 'btn-danger' : 'btn-outline-danger' }}">
+                ❤️
+              </button>
             </form>
           </div>
         </div>
@@ -23,4 +25,8 @@
     @endforeach
   </div>
 </div>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/toggle.js') }}"></script>
 @endsection
