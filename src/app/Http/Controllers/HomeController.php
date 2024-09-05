@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
-use App\Models\Favorite;
-use App\Models\User;
 use App\Models\Restaurant;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\HomeRequest;
 
 class HomeController extends Controller
 {
@@ -23,22 +20,9 @@ class HomeController extends Controller
         return view('customer.profile', compact('user'));
     }
 
-    public function updateProfile(Request $request)
+    public function updateProfile(HomeRequest $request)
     {
         $user = Auth::user();
-
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
-            'phone_number' => ['nullable', 'string', 'max:15'],
-            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->route('profile.show')
-                             ->withErrors($validator)
-                             ->withInput();
-        }
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');

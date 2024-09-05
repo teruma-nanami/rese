@@ -6,7 +6,7 @@ use App\Models\Restaurant;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\ReservationRequest;
 
 class ReservationController extends Controller
 {
@@ -15,21 +15,8 @@ class ReservationController extends Controller
         return view('customer.reservation', compact('restaurant'));
     }
 
-    public function store(Request $request, Restaurant $restaurant)
+    public function store(ReservationRequest $request, Restaurant $restaurant)
     {
-        $validator = Validator::make($request->all(), [
-            'reservation_date' => ['required', 'date'],
-            'reservation_time' => ['required', 'date_format:H:i'],
-            'number_of_people' => ['required', 'integer', 'min:1'],
-            'special_requests' => ['nullable', 'string'],
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->route('customer.reserve', $restaurant)
-                             ->withErrors($validator)
-                             ->withInput();
-        }
-
         Reservation::create([
             'user_id' => Auth::id(),
             'restaurant_id' => $restaurant->id,
@@ -53,14 +40,8 @@ class ReservationController extends Controller
         return view('customer.edit', compact('reservation'));
     }
 
-    public function update(Request $request, Reservation $reservation)
+    public function update(ReservationRequest $request, Reservation $reservation)
     {
-        $request->validate([
-            'reservation_date' => 'required|date',
-            'reservation_time' => 'required|time',
-            'number_of_people' => 'required|integer|min=1',
-        ]);
-
         $reservation->update($request->all());
 
         return redirect()->route('mypage.show')->with('status', '予約が更新されました');
