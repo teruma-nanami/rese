@@ -86,4 +86,14 @@ class RestaurantController extends Controller
 
         return redirect()->route('owner.edit-restaurant', $restaurant)->with('success', 'レストランが更新されました。');
     }
+    
+    public function destroy(Restaurant $restaurant)
+{
+    if (Auth::id() !== $restaurant->owner_id) {
+        return redirect()->route('owner.restaurants')->with('error', '権限がありません。');
+    }
+
+    $restaurant->delete();
+    return redirect()->route('owner.restaurants')->with('success', 'レストランが削除されました。');
+}
 }

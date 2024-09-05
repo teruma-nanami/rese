@@ -45,7 +45,21 @@ Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])-
 Route::post('/reset-password', [NewPasswordController::class, 'store'])->name('password.update');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', [HomeController::class, 'index']);
+
+    Route::get('/', function () {
+        if (Auth::user()->role == 'admin') {
+            return redirect()->route('admin.manage-owners');
+        } elseif (Auth::user()->role == 'restaurant_owner') {
+            return redirect()->route('owner.dashboard');
+        } else {
+            return redirect()->route('home');
+        }
+    })->name('home');
+    
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+    
     // 飲食店の詳細ページのルート
     Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show'])->name('restaurants.show');
 
@@ -88,9 +102,11 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
 Route::middleware(['auth', 'verified', 'owner'])->group(function () {
     Route::get('/owner', [HomeController::class, 'owner'])->name('owner.dashboard');
+    Route::get('/owner/restaurants', [HomeController::class, 'indexRestaurants'])->name('owner.restaurants');
     Route::get('/owner/create-restaurant', [RestaurantController::class, 'create'])->name('owner.create-restaurant');
     Route::post('/owner/create-restaurant', [RestaurantController::class, 'store'])->name('owner.store-restaurant');
     Route::get('/owner/restaurants/{restaurant}/edit', [RestaurantController::class, 'edit'])->name('owner.edit-restaurant');
     Route::post('/owner/restaurants/{restaurant}/confirm', [RestaurantController::class, 'confirm'])->name('owner.confirm-restaurant');
     Route::post('/owner/restaurants/{restaurant}', [RestaurantController::class, 'update'])->name('owner.update-restaurant');
+    Route::delete('/owner/restaurants/{restaurant}', [RestaurantController::class, 'destroy'])->name('owner.delete-restaurant');
 });
