@@ -90,4 +90,10 @@ class HomeController extends Controller
 
         return view('owner.dashboard', compact('reservations'));
     }
+
+    public function indexRestaurants()
+    {
+        $restaurants = Restaurant::where('owner_id', Auth::id())->get();
+        return view('owner.restaurants', compact('restaurants'));
+    }
 }

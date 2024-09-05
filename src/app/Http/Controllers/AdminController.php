@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreOwnerRequest;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
@@ -62,5 +64,79 @@ class AdminController extends Controller
         $user->delete();
 
         return redirect()->route('admin.manage-owners')->with('success', 'ユーザーが削除されました。');
+    }
+    public function indexRestaurants()
+    {
+        $restaurants = Restaurant::all();
+        return view('admin.restaurants', compact('restaurants'));
+    }
+
+    public function create()
+    {
+        $owners = User::where('role', 'restaurant_owner')->get();
+        return view('admin.create_restaurant', compact('owners'));
+    }
+
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'phone_number' => ['required', 'string', 'max:15'],
+            'image_url' => ['nullable', 'string', 'max:255'],
+            'email' => ['nullable', 'string', 'email', 'max:255'],
+            'area' => ['required', 'string', 'max:255'],
+            'cuisine_type' => ['required', 'string', 'max:255'],
+            'owner_id' => ['required', 'exists:users,id'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('admin.create-restaurant')
+                             ->withErrors($validator)
+                             ->withInput();
+        }
+
+        $data = $request->all();
+        $data['owner_id'] = $request->input('owner_id');
+
+        Restaurant::create($data);
+
+        return redirect()->route('admin.create-restaurant')->with('success', 'レストランが作成されました。');
+    }
+
+    public function edit(Restaurant $restaurant)
+    {
+        $owners = User::where('role', 'restaurant_owner')->get();
+        return view('admin.edit_restaurant', compact('restaurant', 'owners'));
+    }
+
+    public function update(Request $request, Restaurant $restaurant)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'phone_number' => ['required', 'string', 'max:15'],
+            'image_url' => ['nullable', 'string', 'max:255'],
+            'email' => ['nullable', 'string', 'email', 'max:255'],
+            'area' => ['required', 'string', 'max:255'],
+            'cuisine_type' => ['required', 'string', 'max:255'],
+            'owner_id' => ['required', 'exists:users,id'],
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('admin.edit-restaurant', $restaurant)
+                             ->withErrors($validator)
+                             ->withInput();
+        }
+
+        $restaurant->update($request->all());
+
+        return redirect()->route('admin.edit-restaurant', $restaurant)->with('success', 'レストランが更新されました。');
+    }
+
+    public function destroy(Restaurant $restaurant)
+    {
+        $restaurant->delete();
+        return redirect()->route('admin.restaurants')->with('success', 'レストランが削除されました。');
     }
 }

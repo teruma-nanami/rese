@@ -35,10 +35,6 @@ a {
   padding: 8px 20px;
   font-weight: 400;
 }
-.header__inner button:hover {
-  background-color: rgb(255, 154, 86);
-  transition: 0.3s;
-}
 .header__sp {
   padding: 0;
   border: none;
@@ -114,6 +110,20 @@ a {
   cursor: pointer;
   margin: auto;
   line-height: 1;
+}
+
+.logout__button {
+  font-size: 36px;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: #fff;
+  border: none;
+  color: #325cf8;
+}
+.logout__button:hover {
+  background-color: #fff;
+  color: rgb(255, 154, 86);
+  transition: 0.2s;
 }
 
 main {
@@ -203,6 +213,9 @@ th, td {
 }
 
 @media (min-width: 768px) {
+  .header {
+    position: static;
+  }
   .header__inner {
     padding: 30px 200px;
     justify-content: left;

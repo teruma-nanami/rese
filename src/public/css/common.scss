@@ -10,7 +10,6 @@ a {
 }
 .header {
   grid-row: 1;
-
   &__inner {
     display: flex;
     justify-content: space-between;
@@ -30,10 +29,10 @@ a {
       padding: 8px 20px;
       font-weight: 400;
     }
-    button:hover {
-      background-color: rgb(255, 154, 86);
-      transition: .3s;
-    }
+    // button:hover {
+    //   background-color: rgb(255, 154, 86);
+    //   transition: .3s;
+    // }
   }
   &__sp {
     padding: 0;
@@ -111,6 +110,21 @@ a {
     margin: auto;
     line-height: 1.0;
 
+  }
+}
+.logout {
+  &__button {
+    font-size: 36px;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: #fff;
+    border: none;
+    color: #325cf8;
+  }
+  &__button:hover {
+    background-color: #fff;
+    color: rgb(255, 154, 86);
+    transition: .2s;
   }
 }
 main {
@@ -200,6 +214,7 @@ th,td {
 
 @media (min-width:768px) {
   .header {
+    position: static;
     &__inner {
       padding: 30px 200px;
       justify-content: left;

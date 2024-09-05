@@ -2,14 +2,12 @@
 
 @section('content')
 <div class="container">
-    <h1>ダッシュボード</h1>
+    <h1>予約一覧</h1>
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
-
-    <h2>予約一覧</h2>
     <table class="table">
         <thead>
             <tr>

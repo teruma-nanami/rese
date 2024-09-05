@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.owner')
 
 @section('content')
 <div class="admin__container">
@@ -24,8 +24,8 @@
                 <td>{{ $restaurant->area }}</td>
                 <td>{{ $restaurant->cuisine_type }}</td>
                 <td>{{ $restaurant->owner->name }}</td>
-                <td><a href="{{ route('admin.edit-restaurant', $restaurant) }}" class="form__button">編集</a></td>
-                <td><form action="{{ route('admin.delete-restaurant', $restaurant) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
+                <td><a href="{{ route('owner.edit-restaurant', $restaurant) }}" class="form__button">編集</a></td>
+                <td><form action="{{ route('owner.delete-restaurant', $restaurant) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="form__button--danger">削除</button>
