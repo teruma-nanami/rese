@@ -10,4 +10,5 @@ document.addEventListener('DOMContentLoaded', function() {
   closeButton.addEventListener('click', function() {
       navMenu.classList.remove('open');
   });
+  
 });

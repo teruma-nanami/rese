@@ -51,5 +51,6 @@
     <div class="footer__inner">Rese, inc.</div>
   </footer>
   <script src="{{ asset('js/humberger.js') }}"></script>
+  <script src="{{ asset('js/confirm.js') }}"></script>
 </body>
 </html>

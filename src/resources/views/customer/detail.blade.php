@@ -33,6 +33,13 @@
         </div>
         <button type="submit" class="form__button">予約する</button>
     </form>
+    <h3>入力内容の確認</h3>
+    <div id="reservation_summary">
+    <p>予約日: <span id="summary_date"></span></p>
+    <p>予約時間: <span id="summary_time"></span></p>
+    <p>人数: <span id="summary_people"></span></p>
+</div>
   </div>
 </div>
 @endsection
+

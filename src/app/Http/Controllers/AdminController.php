@@ -7,7 +7,7 @@ use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreOwnerRequest;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\AdminRequest;
 
 class AdminController extends Controller
 {
@@ -77,25 +77,8 @@ class AdminController extends Controller
         return view('admin.create_restaurant', compact('owners'));
     }
 
-    public function store(Request $request)
+    public function store(AdminRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
-            'phone_number' => ['required', 'string', 'max:15'],
-            'image_url' => ['nullable', 'string', 'max:255'],
-            'email' => ['nullable', 'string', 'email', 'max:255'],
-            'area' => ['required', 'string', 'max:255'],
-            'cuisine_type' => ['required', 'string', 'max:255'],
-            'owner_id' => ['required', 'exists:users,id'],
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->route('admin.create-restaurant')
-                             ->withErrors($validator)
-                             ->withInput();
-        }
-
         $data = $request->all();
         $data['owner_id'] = $request->input('owner_id');
 
@@ -110,25 +93,8 @@ class AdminController extends Controller
         return view('admin.edit_restaurant', compact('restaurant', 'owners'));
     }
 
-    public function update(Request $request, Restaurant $restaurant)
+    public function update(AdminRequest $request, Restaurant $restaurant)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
-            'phone_number' => ['required', 'string', 'max:15'],
-            'image_url' => ['nullable', 'string', 'max:255'],
-            'email' => ['nullable', 'string', 'email', 'max:255'],
-            'area' => ['required', 'string', 'max:255'],
-            'cuisine_type' => ['required', 'string', 'max:255'],
-            'owner_id' => ['required', 'exists:users,id'],
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->route('admin.edit-restaurant', $restaurant)
-                             ->withErrors($validator)
-                             ->withInput();
-        }
-
         $restaurant->update($request->all());
 
         return redirect()->route('admin.edit-restaurant', $restaurant)->with('success', 'レストランが更新されました。');
