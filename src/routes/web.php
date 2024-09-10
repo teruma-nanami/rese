@@ -58,7 +58,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('home');
     
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-
+    Route::get('/search', [HomeController::class, 'index'])->name('home.search');
 
     
     // 飲食店の詳細ページのルート
@@ -78,8 +78,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/mypage', [HomeController::class, 'showMyPage'])->name('mypage.show');
     Route::get('/restaurants/{restaurant}/reserve', [ReservationController::class, 'create'])->name('customer.reserve');
     Route::post('/restaurants/{restaurant}/reserve', [ReservationController::class, 'store'])->name('customer.reserve.store');
-    Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
-    Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::get('stores/{store}/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
+    Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
+
     Route::post('/favorites/toggle/{restaurant}', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
 
     Route::post('/logout', function () {
@@ -112,4 +113,6 @@ Route::middleware(['auth', 'verified', 'owner'])->group(function () {
     Route::post('/owner/restaurants/{restaurant}/confirm', [RestaurantController::class, 'confirm'])->name('owner.confirm-restaurant');
     Route::post('/owner/restaurants/{restaurant}', [RestaurantController::class, 'update'])->name('owner.update-restaurant');
     Route::delete('/owner/restaurants/{restaurant}', [RestaurantController::class, 'destroy'])->name('owner.delete-restaurant');
+    Route::patch('/owner/{reservation}/status', [ReservationController::class, 'updateStatus'])->name('reservations.updateStatus');
+
 });

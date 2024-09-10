@@ -40,6 +40,9 @@
     <p>人数: <span id="summary_people"></span></p>
 </div>
   </div>
+  <div class="review__link">
+    <a href="{{ route('reviews.create', ['store' => $restaurant->id]) }}">レビューを書く</a>
+  </div>
 </div>
 @endsection
 

@@ -3,23 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
-use Illuminate\Http\Request;
+use App\Models\Restaurant;
+use App\Models\Reservation;
+use App\Http\Requests\ReviewRequest;
 
 class ReviewController extends Controller
 {
-    public function create()
+    public function create($restaurantId)
     {
-        return view('customer.review');
+        $restaurant = Restaurant::findOrFail($restaurantId);
+
+        // ユーザーがその店舗を予約したことがあるかを確認
+        $hasReservation = Reservation::where('user_id', auth()->id())
+                                     ->where('restaurant_id', $restaurantId)
+                                     ->where('status', 'completed')
+                                     ->exists();
+
+        if (!$hasReservation) {
+            return redirect()->route('restaurants.show', $restaurantId)->with('error', 'この店舗を訪れたことがないため、レビューを書くことができません。');
+        }
+
+        return view('customer.review', compact('restaurant'));
     }
 
-    public function store(Request $request)
+    public function store(ReviewRequest $request)
     {
-        $request->validate([
-            'rating' => 'required|integer|min:1|max:5',
-            'comment' => 'nullable|string',
-            'review_date' => 'required|date',
-        ]);
-
         Review::create([
             'user_id' => auth()->id(),
             'restaurant_id' => $request->restaurant_id,
@@ -28,6 +36,6 @@ class ReviewController extends Controller
             'review_date' => $request->review_date,
         ]);
 
-        return redirect()->route('customer.review')->with('success', 'レビューが作成されました！');
+        return redirect()->route('mypage.show')->with('success', 'レビューが作成されました！');
     }
 }
