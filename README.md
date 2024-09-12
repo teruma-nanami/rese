@@ -34,40 +34,77 @@ fakerにて作成したパスワードはすべて「password」に統一され�
 - MySQL 8.0
 
 ## テーブル設計
+### ユーザーテーブル
 | ユーザー | users |  |  |  |  |
 | --- | --- | --- | --- | --- | --- |
 | カラム名 | 型 | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
-| ID | bigint unsigned | ◯ |  |  |  |
+| id | bigint unsigned | ◯ |  |  |  |
 | name | varchar(255) |  |  | ◯ |  |
 | email | varchar(255) |  | ◯ | ◯ |  |
-| email_verified_at | varchar(255) |  | ◯ | ◯ |  |
+| email_verified_at | timestamp |  |  |  |  |
+| phone_number | varchar(255) |  |  |  |  |
 | password | varchar(255) |  |  | ◯ |  |
 | password_digest | varchar(255) |  |  | ◯ |  |
-| created_at | timestamp |  |  |  |  |
-| update_at | timestamp |  |  |  |  |
+| role | enum('customer', 'restaurant_owner', 'admin') |  |  | ◯ |  |
+| remember_token | varchar(100) |  |  |  |  |
+| created_at | timestamp |  |  | ◯ |  |
+| updated_at | timestamp |  |  | ◯ |  |
 
 
-| 勤怠 | attendances |  |  |  |  |
+### レストランテーブル
+| レストラン | restaurants |  |  |  |  |
 | --- | --- | --- | --- | --- | --- |
 | カラム名 | 型 | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
-| ID | bigint unsigned | ◯ |  |  |  |
-| user_id | bigint unsigned |  |  | ◯ | users(id) |
-| date | date |  |  | ◯ |  |
-| check_in | dateTime |  |  | ◯ |  |
-| check_out | dateTime |  |  | ◯ |  |
-| created_at | timestamp |  |  |  |  |
-| update_at | timestamp |  |  |  |  |
+| id | bigint unsigned | ◯ |  |  |  |
+| name | varchar(255) |  |  | ◯ |  |
+| address | varchar(255) |  |  | ◯ |  |
+| phone_number | varchar(255) |  |  | ◯ |  |
+| image_url | varchar(255) |  |  |  |  |
+| email | varchar(255) |  |  |  |  |
+| area | varchar(255) |  |  | ◯ |  |
+| cuisine_type | varchar(255) |  |  | ◯ |  |
+| owner_id | bigint unsigned |  |  | ◯ | ◯ (users.id) |
+| created_at | timestamp |  |  | ◯ |  |
+| updated_at | timestamp |  |  | ◯ |  |
 
-
-| 休憩 | breaks |  |  |  |  |
+### 予約テーブル
+| 予約 | reservations |  |  |  |  |
 | --- | --- | --- | --- | --- | --- |
-| 列名 | 型 | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
-| ID | bigint unsigned | ◯ |  |  |  |
-| attendance_id | bigint unsigned |  |  | ◯ | attendance(id) |
-| break_start | datetime |  |  | ◯ |  |
-| break_end | datetime |  |  | ◯ |  |
-| created_at | timestamp |  |  |  |  |
-| update_at | timestamp |  |  |  |  |
+| カラム名 | 型 | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
+| id | bigint unsigned | ◯ |  |  |  |
+| user_id | bigint unsigned |  |  | ◯ | ◯ (users.id) |
+| restaurant_id | bigint unsigned |  |  | ◯ | ◯ (restaurants.id) |
+| reservation_date | date |  |  | ◯ |  |
+| reservation_time | time |  |  | ◯ |  |
+| number_of_people | integer |  |  | ◯ |  |
+| special_requests | text |  |  |  |  |
+| status | enum('pending', 'confirmed', 'completed', 'cancelled') |  |  | ◯ |  |
+| created_at | timestamp |  |  | ◯ |  |
+| updated_at | timestamp |  |  | ◯ |  |
+
+### レビューテーブル
+| レビュー | reviews |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| カラム名 | 型 | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
+| id | bigint unsigned | ◯ |  |  |  |
+| user_id | bigint unsigned |  |  | ◯ | ◯ (users.id) |
+| restaurant_id | bigint unsigned |  |  | ◯ | ◯ (restaurants.id) |
+| rating | integer |  |  | ◯ |  |
+| comment | text |  |  |  |  |
+| review_date | date |  |  | ◯ |  |
+| created_at | timestamp |  |  | ◯ |  |
+| updated_at | timestamp |  |  | ◯ |  |
+
+### お気に入りテーブル
+| お気に入り | favorites |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| カラム名 | 型 | PRIMARY KEY | UNIQUE KEY | NOT NULL | FOREIGN KEY |
+| id | bigint unsigned | ◯ |  |  |  |
+| user_id | bigint unsigned |  |  | ◯ | ◯ (users.id) |
+| restaurant_id | bigint unsigned |  |  | ◯ | ◯ (restaurants.id) |
+| created_at | timestamp |  |  | ◯ |  |
+| updated_at | timestamp |  |  | ◯ |  |
+
 
 ## ER図
 ![alt text](image.png)
