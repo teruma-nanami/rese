@@ -1,11 +1,11 @@
-# atte
-従業員の勤怠管理システム
+# rese
+飲食店管理システム
 
 ## 作成した目的
 模擬案件を通して実践に近い開発経験をつむ
 
 ## アプリケーションURL
-http://runcha.xsrv.jp/
+http://affiliate-pilotage.com/rese  
 fakerにて作成したパスワードはすべて「password」に統一されています
 
 ## 機能一覧
@@ -14,10 +14,18 @@ fakerにて作成したパスワードはすべて「password」に統一され�
 - Remember Me機能
 - メール認証
 - パスワード再設定機能
-- 勤怠管理アプリ
-- 日別勤務時間画面
-- ユーザー一覧画面
-- ユーザー別勤務時間画面
+- ユーザー機能一覧
+    - 飲食店予約機能
+    - 飲食店お気に入り登録・解除機能
+    - 飲食店レビュー機能
+- オーナー機能一覧
+    - 予約管理機能
+    - レストラン新規追加機能
+    - レストラン編集・削除機能
+- 管理者機能一覧
+    - オーナー役割変更機能
+    - レストラン新規追加機能
+    - レストラン編集・削除機能
 
 ## 使用技術(実行環境)
 
@@ -68,11 +76,11 @@ fakerにて作成したパスワードはすべて「password」に統一され�
 
 ### Dockerビルド
 
-1. git clone git@github.com:teruma-nanami/atte
-1. docker-compose up -d --build
+1. git clone git@github.com:teruma-nanami/rese
+1. docker compose up -d --build
 
 ### Laravel環境構築
-1. docker-composer exec php bash
+1. docker composer exec php bash
 1. composer install
 1. .env.example ファイルから.envを作成し、環境変数を変更
 1. php artisan key:generate
