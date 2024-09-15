@@ -42,16 +42,25 @@ class ReservationController extends Controller
 
     public function update(ReservationRequest $request, Reservation $reservation)
     {
-        $reservation->update($request->all());
-
-        return redirect()->route('mypage.show')->with('status', '予約が更新されました');
+        $reservation->update($request->only(['reservation_date', 'reservation_time', 'number_of_people']));
+    
+        return redirect()->route('mypage.show')->with('success', '予約が更新されました');
     }
+    
 
     public function destroy(Reservation $reservation)
     {
         $reservation->delete();
 
-        return redirect()->route('mypage.show')->with('status', '予約が削除されました');
+        return redirect()->route('mypage.show')->with('error', '予約が削除されました');
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $reservation = Reservation::findOrFail($id);
+        $reservation->status = $request->input('status');
+        $reservation->save();
+
+        return redirect()->back()->with('success', 'ステータスが更新されました');
     }
 }
-

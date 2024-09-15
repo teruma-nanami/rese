@@ -4,14 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use App\Models\Restaurant;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\HomeRequest;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $restaurants = Restaurant::all();
+        $query = Restaurant::query();
+
+        if ($request->filled('keyword')) {
+            $query->where('name', 'like', '%' . $request->input('keyword') . '%');
+        }
+
+        if ($request->filled('area')) {
+            $query->where('area', $request->input('area'));
+        }
+
+        if ($request->filled('cuisine_type')) {
+            $query->where('cuisine_type', $request->input('cuisine_type'));
+        }
+
+        $restaurants = $query->get();
+
         return view('customer.index', compact('restaurants'));
     }
     public function showProfile()

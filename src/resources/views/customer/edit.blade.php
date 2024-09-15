@@ -5,7 +5,7 @@
     <h1>予約の編集</h1>
     <form action="{{ route('reservations.update', $reservation) }}" method="POST" class="form">
         @csrf
-        @method('PUT')
+        @method('PATCH')
         <div class="form__text">
             <label for="reservation_date">予約日</label>
             <input type="date" name="reservation_date" id="reservation_date" class="form-control" value="{{ $reservation->reservation_date }}" required>

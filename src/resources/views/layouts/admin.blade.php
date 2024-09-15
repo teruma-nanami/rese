@@ -39,7 +39,6 @@
       <div class="header__nav" id="navMenu">
         <button class="header__close" id="closeButton">×</button>
         <ul>
-          <li><a href="{{ route('admin.manage-owners') }}">Home</a></li>
           <li><a href="{{ route('admin.manage-owners') }}">ユーザー管理</a></li>
           <li><a href="{{ route('admin.make-owner') }}">オーナー作成</a></li>
           <li><a href="{{ route('admin.restaurants') }}">レストラン一覧</a></li>

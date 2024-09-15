@@ -15,11 +15,18 @@
 </head>
 <body>
   <header class="header">
-    @if (session('status'))
+    @if(session('success'))
     <div class="alert alert-success">
-      {{ session('status') }}
+        {{ session('success') }}
     </div>
-  @endif
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
+
     <div class="header__inner">
 
       <h1>

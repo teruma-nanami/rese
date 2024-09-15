@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
-use App\Models\User;
+use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RestaurantRequest;
 
@@ -11,7 +11,9 @@ class RestaurantController extends Controller
 {
     public function show(Restaurant $restaurant)
     {
-        return view('customer.detail', compact('restaurant'));
+        $reviews = Review::where('restaurant_id', $restaurant->id)->with('user')->get();
+
+        return view('customer.detail', compact('restaurant', 'reviews'));
     }
 
     public function create()

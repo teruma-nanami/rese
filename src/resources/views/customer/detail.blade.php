@@ -1,7 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container flex__inner">
+<div class="container">
+  @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+  <div class="flex__inner">
   <div class="detail__card">
     <h1>{{ $restaurant->name }}</h1>
     @if($restaurant->image_url)
@@ -39,6 +46,30 @@
     <p>予約時間: <span id="summary_time"></span></p>
     <p>人数: <span id="summary_people"></span></p>
 </div>
+  </div>
+</div>
+  <div class="review">
+    <h1>レビュー一覧</h1>
+    @if($reviews->isEmpty())
+    <p>この店舗のレビューはまだありません。</p>
+  @else
+    @foreach($reviews as $review)
+      <div class="review__card">
+        <p>投稿者: {{ $review->user->name }}</p>
+        <p>評価: 
+          @for ($i = 0; $i < $review->rating; $i++)
+            ★
+          @endfor
+          @for ($i = $review->rating; $i < 5; $i++)
+            ☆
+          @endfor
+        </p>
+        <p>コメント: {{ $review->comment }}</p>
+        <p>投稿日時: {{ $review->review_date }}</p>
+      </div>
+    @endforeach
+  @endif
+    <a href="{{ route('reviews.create', ['store' => $restaurant->id]) }}">レビューを書く</a>
   </div>
 </div>
 @endsection
