@@ -1,54 +1,65 @@
+```mermaid
 erDiagram
     USERS {
-        int id PK
-        string name
-        string email
-        string phone_number
-        string password
+        bigint id PK
+        varchar name
+        varchar email UNIQUE
+        timestamp email_verified_at
+        varchar phone_number
+        varchar password
+        varchar password_digest
         enum role
-        timestamps timestamps
+        varchar remember_token
+        timestamp created_at
+        timestamp updated_at
     }
     RESTAURANTS {
-        int id PK
-        string name
-        string address
-        string phone_number
-        string email
-        string cuisine_type
-        int owner_id FK
-        timestamps timestamps
+        bigint id PK
+        varchar name
+        varchar address
+        varchar phone_number
+        varchar image_url
+        varchar email
+        varchar area
+        varchar cuisine_type
+        bigint owner_id FK
+        timestamp created_at
+        timestamp updated_at
     }
     RESERVATIONS {
-        int id PK
-        int user_id FK
-        int restaurant_id FK
+        bigint id PK
+        bigint user_id FK
+        bigint restaurant_id FK
         date reservation_date
         time reservation_time
-        int number_of_people
+        integer number_of_people
         text special_requests
         enum status
-        timestamps timestamps
+        timestamp created_at
+        timestamp updated_at
     }
     REVIEWS {
-        int id PK
-        int user_id FK
-        int restaurant_id FK
-        int rating
+        bigint id PK
+        bigint user_id FK
+        bigint restaurant_id FK
+        integer rating
         text comment
         date review_date
-        timestamps timestamps
+        timestamp created_at
+        timestamp updated_at
     }
     FAVORITES {
-        int id PK
-        int user_id FK
-        int restaurant_id FK
-        timestamps timestamps
+        bigint id PK
+        bigint user_id FK
+        bigint restaurant_id FK
+        timestamp created_at
+        timestamp updated_at
     }
 
     USERS ||--o{ RESTAURANTS : "owns"
     USERS ||--o{ RESERVATIONS : "makes"
     USERS ||--o{ REVIEWS : "writes"
     USERS ||--o{ FAVORITES : "favorites"
-    RESTAURANTS ||--o{ RESERVATIONS : "receives"
+    RESTAURANTS ||--o{ RESERVATIONS : "has"
     RESTAURANTS ||--o{ REVIEWS : "receives"
     RESTAURANTS ||--o{ FAVORITES : "is favorited"
