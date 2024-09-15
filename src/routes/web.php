@@ -68,7 +68,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/reservations/{restaurant}', [ReservationController::class, 'store'])->name('reservations.store');
     Route::get('/reservations/done', [ReservationController::class, 'done'])->name('reservations.done');
     Route::get('/reservations/{reservation}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');
-    Route::put('/reservations/{reservation}', [ReservationController::class, 'update'])->name('reservations.update');
+    Route::patch('/reservations/{reservation}', [ReservationController::class, 'update'])->name('reservations.update');
     Route::delete('/reservations/{reservation}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 // プロフィールページのルート
     Route::get('/profile', [HomeController::class, 'showProfile'])->name('profile.show');
@@ -114,5 +114,6 @@ Route::middleware(['auth', 'verified', 'owner'])->group(function () {
     Route::post('/owner/restaurants/{restaurant}', [RestaurantController::class, 'update'])->name('owner.update-restaurant');
     Route::delete('/owner/restaurants/{restaurant}', [RestaurantController::class, 'destroy'])->name('owner.delete-restaurant');
     Route::patch('/owner/{reservation}/status', [ReservationController::class, 'updateStatus'])->name('reservations.updateStatus');
+    Route::get('owner/reviews', [ReviewController::class, 'index'])->name('owner.reviews');
 
 });

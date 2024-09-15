@@ -9,6 +9,12 @@ use App\Http\Requests\ReviewRequest;
 
 class ReviewController extends Controller
 {
+    public function index()
+    {
+        $reviews = Review::with('user', 'restaurant')->get(); // ユーザーと店舗情報を含めてレビューを取得
+        return view('owner.reviews', compact('reviews'));
+    }
+
     public function create($restaurantId)
     {
         $restaurant = Restaurant::findOrFail($restaurantId);
@@ -36,6 +42,6 @@ class ReviewController extends Controller
             'review_date' => $request->review_date,
         ]);
 
-        return redirect()->route('mypage.show')->with('success', 'レビューが作成されました！');
+        return redirect()->route('mypage.show')->with('success', 'レビューありがとうございます！');
     }
 }

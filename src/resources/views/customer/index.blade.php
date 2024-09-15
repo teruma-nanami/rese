@@ -35,7 +35,7 @@
     @foreach($restaurants as $restaurant)
       <div class="card__inner">
         @if($restaurant->image_url)
-          <img src="{{ asset($restaurant->image_url) }}" alt="{{ $restaurant->name }}">
+        <a href="{{ route('restaurants.show', $restaurant) }}"><img src="{{ asset($restaurant->image_url) }}" alt="{{ $restaurant->name }}"></a>
         @endif
         <div class="card__text">
           <h3>{{ $restaurant->name }}</h3>

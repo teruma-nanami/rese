@@ -12,12 +12,12 @@ class FavoriteController extends Controller {
 
         if ($user->favorites->contains($restaurant->id)) {
             $user->favorites()->detach($restaurant->id);
-            return redirect()->back()->with('status', 'お気に入りから削除しました');
+            return redirect()->back()->with('error', 'お気に入りから削除しました');
         } else {
             if (!$user->favorites->contains($restaurant->id)) {
                 $user->favorites()->attach($restaurant->id);
             }
-            return redirect()->back()->with('status', 'お気に入りに追加しました');
+            return redirect()->back()->with('success', 'お気に入りに追加しました');
         }
     }
 }

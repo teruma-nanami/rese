@@ -25,9 +25,10 @@
       <div class="header__nav" id="navMenu">
         <button class="header__close" id="closeButton">×</button>
         <ul>
-          <li><a href="{{ asset('/owner') }}">Home</a></li>
+          <li><a href="{{ route('owner.dashboard') }}">予約一覧</a></li>
           <li><a href="{{ route('owner.create-restaurant') }}">レストラン作成</a></li>
           <li><a href="{{ route('owner.restaurants') }}">レストラン一覧</a></li>
+          <li><a href="{{ route('owner.reviews') }}">レビュー一覧</a></li>
           <li>
             <form action="/logout" method="POST">
                 @csrf

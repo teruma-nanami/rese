@@ -24,7 +24,7 @@ class ReservationController extends Controller
             'reservation_time' => $request->input('reservation_time'),
             'number_of_people' => $request->input('number_of_people'),
             'special_requests' => $request->input('special_requests'),
-            'status' => '来店前',
+            'status' => 'pending',
         ]);
 
         return redirect()->route('reservations.done');
@@ -42,16 +42,17 @@ class ReservationController extends Controller
 
     public function update(ReservationRequest $request, Reservation $reservation)
     {
-        $reservation->update($request->all());
-
-        return redirect()->route('mypage.show')->with('status', '予約が更新されました');
+        $reservation->update($request->only(['reservation_date', 'reservation_time', 'number_of_people']));
+    
+        return redirect()->route('mypage.show')->with('success', '予約が更新されました');
     }
+    
 
     public function destroy(Reservation $reservation)
     {
         $reservation->delete();
 
-        return redirect()->route('mypage.show')->with('status', '予約が削除されました');
+        return redirect()->route('mypage.show')->with('error', '予約が削除されました');
     }
 
     public function updateStatus(Request $request, $id)

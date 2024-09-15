@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+@if (session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
 <div class="container">
     <h1>{{ $user->name }}さんのマイページ</h1>
     <div class="flex__inner">
