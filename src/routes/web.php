@@ -56,11 +56,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
             return redirect()->route('home');
         }
     })->name('home');
-    
+
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/search', [HomeController::class, 'index'])->name('home.search');
 
-    
+
     // 飲食店の詳細ページのルート
     Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show'])->name('restaurants.show');
 
@@ -68,13 +68,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/reservations/{restaurant}', [ReservationController::class, 'store'])->name('reservations.store');
     Route::get('/reservations/done', [ReservationController::class, 'done'])->name('reservations.done');
     Route::get('/reservations/{reservation}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');
+    Route::post('/reservations/{reservation}/confirm', [ReservationController::class, 'confirm'])->name('reservations.confirm');
     Route::patch('/reservations/{reservation}', [ReservationController::class, 'update'])->name('reservations.update');
     Route::delete('/reservations/{reservation}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
-// プロフィールページのルート
+    // プロフィールページのルート
     Route::get('/profile', [HomeController::class, 'showProfile'])->name('profile.show');
     Route::post('/profile', [HomeController::class, 'updateProfile'])->name('profile.update');
 
-// マイページのルート
+    // マイページのルート
     Route::get('/mypage', [HomeController::class, 'showMyPage'])->name('mypage.show');
     Route::get('/restaurants/{restaurant}/reserve', [ReservationController::class, 'create'])->name('customer.reserve');
     Route::post('/restaurants/{restaurant}/reserve', [ReservationController::class, 'store'])->name('customer.reserve.store');
@@ -115,5 +116,4 @@ Route::middleware(['auth', 'verified', 'owner'])->group(function () {
     Route::delete('/owner/restaurants/{restaurant}', [RestaurantController::class, 'destroy'])->name('owner.delete-restaurant');
     Route::patch('/owner/{reservation}/status', [ReservationController::class, 'updateStatus'])->name('reservations.updateStatus');
     Route::get('owner/reviews', [ReviewController::class, 'index'])->name('owner.reviews');
-
 });

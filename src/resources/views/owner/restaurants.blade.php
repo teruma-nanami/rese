@@ -1,41 +1,43 @@
 @extends('layouts.owner')
 
 @section('content')
-<div class="admin__container">
+  <div class="admin__container">
     <h1>レストラン一覧</h1>
     @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+      <div class="alert alert-success">
+        {{ session('success') }}
+      </div>
     @endif
 
-    <table class="admin__table">
+    <table class="owner-table">
+      <tr>
+        <th>店名</th>
+        <th>エリア</th>
+        <th>料理の種類</th>
+        <th>オーナー</th>
+        <th>編集</th>
+        <th>削除</th>
+      </tr>
+      @foreach ($restaurants as $restaurant)
         <tr>
-            <th>店名</th>
-            <th>エリア</th>
-            <th>料理の種類</th>
-            <th>オーナー</th>
-            <th>編集</th>
-            <th>削除</th>
+          <td>{{ $restaurant->name }}</td>
+          <td>{{ $restaurant->area }}</td>
+          <td>{{ $restaurant->cuisine_type }}</td>
+          <td>{{ $restaurant->owner->name }}</td>
+          <td><a href="{{ route('owner.edit-restaurant', $restaurant) }}" class="form__button">編集</a></td>
+          <td>
+            <form action="{{ route('owner.delete-restaurant', $restaurant) }}" method="POST"
+              onsubmit="return confirm('本当に削除しますか？');">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="form__button--danger">削除</button>
+            </form>
+          </td>
         </tr>
-        @foreach ($restaurants as $restaurant)
-            <tr>
-                <td>{{ $restaurant->name }}</td>
-                <td>{{ $restaurant->area }}</td>
-                <td>{{ $restaurant->cuisine_type }}</td>
-                <td>{{ $restaurant->owner->name }}</td>
-                <td><a href="{{ route('owner.edit-restaurant', $restaurant) }}" class="form__button">編集</a></td>
-                <td><form action="{{ route('owner.delete-restaurant', $restaurant) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="form__button--danger">削除</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
+      @endforeach
     </table>
     {{-- <div class="page__nav">
         {{ $users->appends(['date' => $date])->links() }}
       </div> --}}
-</div>
+  </div>
 @endsection

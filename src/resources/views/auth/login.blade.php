@@ -7,24 +7,26 @@
       @csrf
       <div class="form__inner">
         <div class="form__inner-text">
+          <i class="bi bi-envelope-fill"></i>
           <input type="text" name="email" placeholder="email">
         </div>
         <div class="form__error">
           @error('email')
-          {{ $message }}
+            {{ $message }}
           @enderror
         </div>
         <div class="form__inner-text">
+          <i class="bi bi-key-fill"></i>
           <input type="password" name="password" placeholder="Password">
         </div>
         <div class="form__error">
           @error('password')
-          {{ $message }}
+            {{ $message }}
           @enderror
         </div>
         <div class="form__inner-check">
           <label for="remember_me">
-              <input id="remember_me" type="checkbox" name="remember"><span> ログイン状態を保存する</span>
+            <input id="remember_me" type="checkbox" name="remember"><span> ログイン状態を保存する</span>
           </label>
         </div>
         <div class="form__button">

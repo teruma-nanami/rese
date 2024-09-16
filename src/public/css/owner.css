@@ -21,20 +21,27 @@ h1 span {
   margin: 0 20px;
 }
 
-table {
+.owner-table {
   margin: 0 auto;
-  max-width: 1280px;
+  max-width: 1440px;
+}
+.owner-table__request {
+  width: 25%;
+}
+.owner-table__comment {
+  width: 50%;
 }
 
 tr {
   border-top: 1px solid #000;
 }
 
-th, td {
+th,
+td {
   text-align: center;
   padding: 10px 4px;
   font-size: 14px;
-  border: 1px solid #000;
+  border-top: 1px solid #000;
 }
 
 .form {
@@ -60,47 +67,84 @@ th, td {
   align-items: center;
   margin: 20px 0;
   padding: 10px;
-  font-size: 18px;
+  font-size: 14px;
 }
-.form__text input, .form__text select {
+.form__text input,
+.form__text select {
   width: 80%;
   padding: 10px;
 }
+.form__text--confirm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  padding: 10px;
+  font-size: 14px;
+}
+.form__text--confirm input,
+.form__text--confirm select {
+  width: 80%;
+  padding: 10px;
+  border: none;
+  background-color: #ddd;
+  outline: none;
+}
 .form__button {
   margin-top: 20px;
-  padding: 8px 30px;
-  font-size: 18px;
+  font-size: 14px;
   background-color: #eee;
-  border: 1px solid #325cf8;
+  border: none;
   color: #325cf8;
 }
 .form__button:hover {
-  border: 1px solid #f60;
+  border: none;
   color: #f60;
   transition: 0.2s;
 }
 .form__button--danger {
-  padding: 8px 30px;
-  font-size: 18px;
+  font-size: 14px;
   background-color: #eee;
-  border: 1px solid #f00;
+  border: none;
   color: #f00;
 }
 .form__button--danger:hover {
   background-color: #f00;
-  border: 1px solid #f00;
+  border: none;
   color: #eee;
   transition: 0.2s;
 }
 
 @media (min-width: 768px) {
+  .form__text {
+    font-size: 18px;
+  }
+  .form__text--confirm {
+    font-size: 18px;
+  }
+  .form__button {
+    margin-top: 20px;
+    padding: 8px 30px;
+    font-size: 18px;
+    background-color: #eee;
+    border: 1px solid #325cf8;
+    color: #325cf8;
+  }
+  .form__button--danger {
+    padding: 8px 30px;
+    font-size: 18px;
+    background-color: #eee;
+    border: 1px solid #f00;
+    color: #f00;
+  }
   tr {
     border-top: 1px solid #000;
   }
-  th, td {
+  th,
+  td {
     text-align: left;
     padding: 20px 35px;
-    font-size: 18px;
+    font-size: 15px;
     border: none;
   }
 }/*# sourceMappingURL=owner.css.map */
