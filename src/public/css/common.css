@@ -45,11 +45,15 @@ a {
   width: 70px;
   height: 70px;
 }
+.header__sp:hover {
+  background-color: #f93;
+  transition: 0.2s;
+}
 .header__sp::before {
   content: "";
   display: block;
   margin: auto;
-  width: 6px;
+  width: 28px;
   height: 2px;
   background: #fff;
 }
@@ -57,13 +61,13 @@ a {
   content: "";
   display: block;
   margin: auto;
-  width: 32px;
+  width: 28px;
   height: 2px;
   background: #fff;
 }
 .header__sp::before {
   transform: translateY(-7px);
-  box-shadow: 0 9px #fff;
+  box-shadow: 0 8px #fff;
 }
 .header__sp::after {
   transform: translateY(7px);
@@ -71,7 +75,8 @@ a {
 .header__nav {
   position: fixed;
   top: 0;
-  right: 100%; /* 初期位置を画面外に設定 */
+  right: 100%;
+  /* 初期位置を画面外に設定 */
   width: 100%;
   height: 100%;
   background: #fff;
@@ -94,14 +99,14 @@ a {
   font-weight: 100;
 }
 .header__nav.open {
-  left: 0; /* メニューが表示される位置 */
+  left: 0;
+  /* メニューが表示される位置 */
 }
 .header__close {
   width: 70px;
   height: 70px;
   background-color: #325cf8;
   color: #fff;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   position: absolute;
   top: 0px;
   right: 0px;
@@ -110,6 +115,11 @@ a {
   cursor: pointer;
   margin: auto;
   line-height: 1;
+  vertical-align: middle;
+}
+.header__close:hover {
+  background-color: #f93;
+  transition: 0.2s;
 }
 
 .logout__button {
@@ -205,7 +215,8 @@ svg.w-5.h-5 {
   border: none;
 }
 
-th, td {
+th,
+td {
   text-align: left;
   padding: 20px 35px;
   font-size: 18px;
@@ -232,6 +243,7 @@ th, td {
     width: 40px;
     height: 40px;
     top: 45px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
     right: calc(100% - 240px);
     border-radius: 5px;
   }

@@ -69,6 +69,9 @@ h2 {
   background-color: #f60;
   transition: 0.4s;
 }
+.card__link {
+  position: relative;
+}
 
 .form {
   max-width: 864px;
@@ -83,9 +86,28 @@ h2 {
   font-size: 14px;
   margin: 0 0 5px 5px;
 }
-.form__text input, .form__text select {
-  width: 100%;
+.form__text input,
+.form__text select,
+.form__text textarea {
+  width: 80%;
   padding: 10px;
+}
+.form__text--confirm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  padding: 10px;
+  font-size: 14px;
+}
+.form__text--confirm input,
+.form__text--confirm select,
+.form__text--confirm textarea {
+  width: 80%;
+  padding: 10px;
+  border: none;
+  background-color: #ddd;
+  outline: none;
 }
 .form__button {
   display: block;
@@ -101,6 +123,26 @@ h2 {
   border: 1px solid #f60;
   color: #f60;
   transition: 0.2s;
+}
+.form__search {
+  margin: 0 4px;
+}
+.form__search input,
+.form__search select {
+  padding: 4px 10px;
+  font-size: 14px;
+}
+.form__search button {
+  padding: 4px 10px;
+  font-size: 16px;
+  color: #325cf8;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+.form__search button:hover {
+  background-color: #eee;
+  color: #f93;
 }
 
 .reservation-comfirm__card {
@@ -163,6 +205,18 @@ h2 {
   display: block;
   width: 100%;
   text-align: center;
+  margin-top: 10px;
+}
+.reservation__link a {
+  padding: 8px 20px;
+  border: #325cf8 solid 1px;
+  color: #325cf8;
+  font-size: 18px;
+}
+.reservation__link a:hover {
+  border: #f93 solid 1px;
+  color: #f93;
+  transition: 0.2s;
 }
 
 .favorite__card {
@@ -200,28 +254,73 @@ h2 {
   transition: 0.2s;
 }
 
-.btn-outline-danger {
+.review {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 12px;
+}
+.review__card {
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.review__rating--text {
+  color: rgb(229, 202, 0);
+}
+.review__button {
+  display: block;
+  width: 200px;
+  margin: 0 auto;
+  text-align: center;
+  color: #325cf8;
+  border: #325cf8 1px solid;
+  padding: 8px 12px;
+  font-size: 20px;
+}
+.review__button:hover {
+  color: #f93;
+  border: #f93 1px solid;
+  transition: 0.3s;
+}
+
+.favorite__button--gray {
+  position: absolute;
+  bottom: -22px;
+  right: 0px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  color: #999;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 40px;
+}
+
+.favorite__button--gray:hover {
+  color: #f60;
+  border: none;
+  background: none;
+  transition: 0.8s;
+}
+
+.favorite__button--red {
+  position: absolute;
+  bottom: -22px;
+  right: 0px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   color: #dc3545;
-  border-color: #dc3545;
-  background-color: transparent;
+  background-color: #fff;
+  border: none;
+  font-size: 40px;
+  cursor: pointer;
 }
 
-.btn-outline-danger:hover {
-  color: #fff;
-  background-color: #dc3545;
-  border-color: #dc3545;
-}
-
-.btn-danger {
-  color: #dc3545;
-  background-color: #dc3545;
-  border-color: #dc3545;
-}
-
-.btn-danger:hover {
-  color: #fff;
-  background-color: #c82333;
-  border-color: #bd2130;
+.favorite__button--red:hover {
+  opacity: 0.75;
 }
 
 @media (min-width: 768px) {
@@ -238,7 +337,8 @@ h2 {
     padding: 10px;
     font-size: 18px;
   }
-  .form__text input, .form__text select {
+  .form__text input,
+  .form__text select {
     width: 80%;
     padding: 10px;
   }
@@ -254,6 +354,26 @@ h2 {
     border: 1px solid #f60;
     color: #f60;
     transition: 0.2s;
+  }
+  .form__search {
+    margin: 0 8px;
+  }
+  .form__search input,
+  .form__search select {
+    padding: 12px 30px;
+    font-size: 18px;
+  }
+  .form__search button {
+    padding: 12px 30px;
+    font-size: 18px;
+    color: #325cf8;
+    border: #325cf8 1px solid;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  .form__search button:hover {
+    border: #f93 1px solid;
+    color: #f93;
   }
   .card__inner {
     margin: 0 10px 20px 10px;

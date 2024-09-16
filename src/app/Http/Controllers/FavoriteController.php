@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Restaurant;
 use App\Models\User;
 
-class FavoriteController extends Controller {
+class FavoriteController extends Controller
+{
     public function toggle(Restaurant $restaurant)
     {
         $user = auth()->user();
@@ -21,5 +22,3 @@ class FavoriteController extends Controller {
         }
     }
 }
-
-

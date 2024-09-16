@@ -21,6 +21,15 @@ h2 {
 .form__inner {
   padding: 0 16px;
 }
+.form__inner-text {
+  display: flex;
+  align-items: center;
+}
+.form__inner-text i {
+  margin-right: 8px;
+  margin-top: 15px;
+  font-size: 20px;
+}
 .form__inner-text input {
   width: 100%;
   background-color: #fff;

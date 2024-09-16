@@ -21,9 +21,9 @@ class ReviewController extends Controller
 
         // ユーザーがその店舗を予約したことがあるかを確認
         $hasReservation = Reservation::where('user_id', auth()->id())
-                                     ->where('restaurant_id', $restaurantId)
-                                     ->where('status', 'completed')
-                                     ->exists();
+            ->where('restaurant_id', $restaurantId)
+            ->where('status', 'completed')
+            ->exists();
 
         if (!$hasReservation) {
             return redirect()->route('restaurants.show', $restaurantId)->with('error', 'この店舗を訪れたことがないため、レビューを書くことができません。');
