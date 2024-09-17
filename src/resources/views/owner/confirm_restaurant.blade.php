@@ -5,10 +5,14 @@
     <h1>レストラン編集確認</h1>
     <form action="{{ route('owner.update-restaurant', $restaurant->id) }}" method="POST" class="form">
       @csrf
-      @method('POST')
+      @method('PATCH')
       <div class="form__text--confirm">
         <label for="name">名前</label>
         <input type="text" id="name" name="name" value="{{ $data['name'] }}" readonly>
+      </div>
+      <div class="form__text--confirm">
+        <label for="post_code">郵便番号</label>
+        <input type="text" name="post_code" value="{{ $data['post_code'] }}" required>
       </div>
       <div class="form__text--confirm">
         <label for="address">住所</label>

@@ -25,9 +25,10 @@ class RestaurantRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'post_code' => ['required', 'string', 'max:10'],
             'address' => ['required', 'string', 'max:255'],
             'phone_number' => ['required', 'string', 'max:15'],
-            'image_url' => ['nullable', 'string', 'max:255'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'email' => ['nullable', 'string', 'email', 'max:255'],
             'area' => ['required', 'string', 'max:255'],
             'cuisine_type' => ['required', 'string', 'max:255'],

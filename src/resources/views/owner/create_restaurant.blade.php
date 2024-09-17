@@ -3,7 +3,7 @@
 @section('content')
   <div class="container">
     <h1>レストラン作成</h1>
-    <form action="{{ route('admin.store-restaurant') }}" method="POST" class="form">
+    <form action="{{ route('owner.store-restaurant') }}" method="POST" class="form" enctype="multipart/form-data">
       @csrf
       <div class="form__text">
         <label for="name">名前</label>
@@ -22,8 +22,8 @@
         <input type="text" name="phone_number" value="{{ old('phone_number') }}" required>
       </div>
       <div class="form__text">
-        <label for="image_url">画像URL</label>
-        <input type="text" name="image_url" value="{{ old('image_url') }}">
+        <label for="image">画像</label>
+        <input type="file" name="image">
       </div>
       <div class="form__text">
         <label for="email">メールアドレス</label>

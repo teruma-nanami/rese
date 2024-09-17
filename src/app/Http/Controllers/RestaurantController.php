@@ -26,6 +26,10 @@ class RestaurantController extends Controller
         $data = $request->all();
         $data['owner_id'] = Auth::id();
 
+        if ($request->hasFile('image')) {
+            $data['image_url'] = $request->file('image')->store('images', 'public');
+        }
+
         Restaurant::create($data);
 
         return redirect()->route('owner.create-restaurant')->with('success', 'レストランが作成されました。');
@@ -36,25 +40,33 @@ class RestaurantController extends Controller
         if (Auth::id() !== $restaurant->owner_id) {
             return redirect()->route('owner.create-restaurant')->with('error', '権限がありません。');
         }
+
         return view('owner.edit_restaurant', compact('restaurant'));
     }
 
-    public function confirm(RestaurantRequest $request, Restaurant $restaurant)
-    {
-        $data = $request->all();
-        return view('owner.confirm_restaurant', compact('data', 'restaurant'));
+public function confirm(RestaurantRequest $request, $id)
+{
+    $data = $request->all();
+    $restaurant = Restaurant::findOrFail($id);
+
+    if ($request->hasFile('image')) {
+        $data['image_url'] = $request->file('image')->store('images', 'public');
     }
 
-    public function update(RestaurantRequest $request, Restaurant $restaurant)
-    {
-        if (Auth::id() !== $restaurant->owner_id) {
-            return redirect()->route('owner.create-restaurant')->with('error', '権限がありません。');
-        }
+    return view('owner.confirm_restaurant', compact('data', 'restaurant'));
+}
 
-        $restaurant->update($request->all());
+public function update(RestaurantRequest $request, $id)
+{
+    $restaurant = Restaurant::findOrFail($id);
+    $data = $request->all();
 
-        return redirect()->route('owner.edit-restaurant', $restaurant)->with('success', 'レストランが更新されました。');
-    }
+
+
+    $restaurant->update($data);
+
+    return redirect()->route('owner.edit-restaurant', $restaurant->id)->with('success', 'レストランが更新されました。');
+}
 
     public function destroy(Restaurant $restaurant)
     {

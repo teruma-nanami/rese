@@ -3,7 +3,7 @@
 @section('content')
   <div class="container">
     <h1>レストラン編集</h1>
-    <form action="{{ route('owner.confirm-restaurant', $restaurant->id) }}" method="POST" class="form">
+    <form action="{{ route('owner.confirm-restaurant', $restaurant->id) }}" method="POST" class="form" enctype="multipart/form-data">
       @csrf
       @method('POST')
       <div class="form__text">
@@ -26,9 +26,8 @@
           value="{{ old('phone_number', $restaurant->phone_number) }}" required>
       </div>
       <div class="form__text">
-        <label for="image_url">画像URL</label>
-        <input type="text" id="image_url" name="image_url"
-          value="{{ old('image_url', $restaurant->image_url) }}">
+        <label for="image">画像</label>
+        <input type="file" name="image">
       </div>
       <div class="form__text">
         <label for="email">メールアドレス</label>

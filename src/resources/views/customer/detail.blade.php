@@ -13,6 +13,7 @@
         <h1>{{ $restaurant->name }}</h1>
         @if ($restaurant->image_url)
           <img src="{{ asset($restaurant->image_url) }}" alt="{{ $restaurant->name }}" class="img-fluid">
+          <img src="{{ asset('storage/' . $restaurant->image_url) }}" alt="{{ $restaurant->name }}"> {{-- ファイルアップロードした際には左記のimgリンクを使用する --}}
         @endif
         <p>#{{ $restaurant->area }} #{{ $restaurant->cuisine_type }}</p>
         <p>{{ $restaurant->detail }}</p>
@@ -71,7 +72,7 @@
           </div>
         @endforeach
       @endif
-      <a href="{{ route('reviews.create', ['store' => $restaurant->id]) }}" class="review__button">レビューを書く</a>
+      <a href="{{ route('reviews.create', ['restaurant' => $restaurant->id]) }}" class="review__button">レビューを書く</a>
     </div>
   </div>
 @endsection

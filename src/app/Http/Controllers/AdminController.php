@@ -82,6 +82,10 @@ class AdminController extends Controller
         $data = $request->all();
         $data['owner_id'] = $request->input('owner_id');
 
+        if ($request->hasFile('image')) {
+            $data['image_url'] = $request->file('image')->store('images', 'public');
+        }
+
         Restaurant::create($data);
 
         return redirect()->route('admin.create-restaurant')->with('success', 'レストランが作成されました。');
@@ -95,6 +99,11 @@ class AdminController extends Controller
 
     public function update(AdminRequest $request, Restaurant $restaurant)
     {
+
+        if ($request->hasFile('image')) {
+            $data['image_url'] = $request->file('image')->store('images', 'public');
+        }
+        
         $restaurant->update($request->all());
 
         return redirect()->route('admin.edit-restaurant', $restaurant)->with('success', 'レストランが更新されました。');

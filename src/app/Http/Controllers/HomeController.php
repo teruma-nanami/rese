@@ -55,7 +55,7 @@ class HomeController extends Controller
 
     public function showMyPage()
     {
-        $user = auth()->user();
+        $user = Auth::user();
         $reservations = $user->reservations()->where('reservation_date', '>=', now()->toDateString())->get(); // 予約情報を取得
         $favoriteRestaurants = $user->favorites; // お気に入りのレストランを取得
 

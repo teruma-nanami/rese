@@ -19,7 +19,7 @@
       </div>
     @endif
 
-    <form action="{{ route('customer.reserve.store', $restaurant) }}" method="POST" class="form">
+    <form action="{{ route('reservations.store', $restaurant) }}" method="POST" class="form">
       @csrf
       <div class="form__text">
         <label for="reservation_date">予約日</label>
