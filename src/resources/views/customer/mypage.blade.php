@@ -31,7 +31,7 @@
                 </table>
                 <div class="change">
                   <a href="{{ route('reservations.edit', $reservation) }}">予約変更</a>
-                  <form action="{{ route('reservations.destroy', $reservation) }}" method="POST" style="display:inline;">
+                  <form action="{{ route('reservations.destroy', $reservation) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');" class="reservation-comfirm__form">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="reservation-comfirm__button">×</button>
