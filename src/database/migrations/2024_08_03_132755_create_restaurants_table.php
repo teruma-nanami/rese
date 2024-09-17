@@ -23,6 +23,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('email')->nullable();
             $table->string('area');
             $table->string('cuisine_type');
+            $table->text('detail')->nullable();
             $table->foreignId('owner_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });

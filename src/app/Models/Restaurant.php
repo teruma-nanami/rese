@@ -17,6 +17,7 @@ class Restaurant extends Model
         'email',
         'area',
         'cuisine_type',
+        'detail',
         'owner_id',
     ];
 

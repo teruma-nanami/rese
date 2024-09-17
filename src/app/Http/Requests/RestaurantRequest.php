@@ -31,6 +31,7 @@ class RestaurantRequest extends FormRequest
             'email' => ['nullable', 'string', 'email', 'max:255'],
             'area' => ['required', 'string', 'max:255'],
             'cuisine_type' => ['required', 'string', 'max:255'],
+            'detail' => ['nullable', 'string'],
         ];
     }
 }

@@ -57,6 +57,10 @@
           @endforeach
         </select>
       </div>
+      <div class="form__text">
+        <label for="email">店舗説明</label>
+        <textarea id="detail" name="detail">{{ old('detail') }}</textarea>
+      </div>
       <button type="submit" class="form__button">作成</button>
     </form>
   </div>
