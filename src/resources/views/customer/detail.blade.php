@@ -15,7 +15,7 @@
           <img src="{{ asset($restaurant->image_url) }}" alt="{{ $restaurant->name }}" class="img-fluid">
         @endif
         <p>#{{ $restaurant->area }} #{{ $restaurant->cuisine_type }}</p>
-        {{-- <p>{{ $restaurant->detail }}</p> --}}
+        <p>{{ $restaurant->detail }}</p>
         <p>〒: {{ $restaurant->post_code }}</p>
         <p>住所: {{ $restaurant->address }}</p>
         <p>電話番号: {{ $restaurant->phone_number }}</p>

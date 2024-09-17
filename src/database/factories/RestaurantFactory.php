@@ -30,6 +30,7 @@ class RestaurantFactory extends Factory
             'email' => $this->faker->safeEmail,
             'area' => $this->faker->randomElement($prefectures),
             'cuisine_type' => $this->faker->randomElement($cuisineTypes),
+            'detail' => $this->faker->paragraph,
             'owner_id' => User::factory(),
         ];
     }
