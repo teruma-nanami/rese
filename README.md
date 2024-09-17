@@ -123,6 +123,7 @@ fakerにて作成したパスワードはすべて「password」に統一され�
 1. php artisan key:generate
 1. php artisan migrate
 1. php artisan db:seed
+1. php artisan storage:link
 
 ### RememberUserでエラーが発生したとき
 Features.phpクラスにremember-usersを追加します。

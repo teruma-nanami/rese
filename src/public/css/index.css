@@ -89,7 +89,7 @@ h2 {
 .form__text input,
 .form__text select,
 .form__text textarea {
-  width: 80%;
+  width: 100%;
   padding: 10px;
 }
 .form__text--confirm {
@@ -103,7 +103,7 @@ h2 {
 .form__text--confirm input,
 .form__text--confirm select,
 .form__text--confirm textarea {
-  width: 80%;
+  width: 100%;
   padding: 10px;
   border: none;
   background-color: #ddd;
@@ -341,9 +341,19 @@ h2 {
     font-size: 18px;
   }
   .form__text input,
-  .form__text select {
+.form__text select,
+.form__text textarea {
     width: 80%;
     padding: 10px;
+  }
+  .form__text--confirm input,
+.form__text--confirm select,
+.form__text--confirm textarea {
+    width: 80%;
+    padding: 10px;
+    border: none;
+    background-color: #ddd;
+    outline: none;
   }
   .form__button {
     margin-top: 20px;
@@ -362,7 +372,8 @@ h2 {
     margin: 0 8px;
   }
   .form__search input,
-  .form__search select {
+.form__search select,
+.form__search textarea {
     padding: 12px 30px;
     font-size: 18px;
   }
@@ -420,4 +431,5 @@ h2 {
   .reservation__link {
     display: none;
   }
-}/*# sourceMappingURL=index.css.map */
+}
+/*# sourceMappingURL=index.css.map */

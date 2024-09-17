@@ -79,7 +79,8 @@ td {
     font-size: 14px;
 
     input,
-    select {
+    select,
+    textarea {
       width: 80%;
       padding: 10px;
     }
@@ -94,7 +95,8 @@ td {
     font-size: 14px;
 
     input,
-    select {
+    select,
+    textarea {
       width: 80%;
       padding: 10px;
       border: none;
@@ -150,13 +152,23 @@ td {
       border: 1px solid #325cf8;
       color: #325cf8;
     }
-
+    &__button:hover {
+      border: 1px solid #f93;
+      color: #f93;
+      transition: .2s;
+    }
     &__button--danger {
       padding: 8px 30px;
       font-size: 18px;
       background-color: #eee;
       border: 1px solid #f00;
       color: #f00;
+    }
+    &__button--danger:hover {
+      background-color: #f00;
+      border: 1px solid #f00;
+      color: #eee;
+      transition: .2s;
     }
   }
 

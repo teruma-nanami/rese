@@ -102,7 +102,7 @@ h2 {
     input,
     select,
     textarea {
-      width: 80%;
+      width: 100%;
       padding: 10px;
     }
   }
@@ -118,7 +118,7 @@ h2 {
     input,
     select,
     textarea {
-      width: 80%;
+      width: 100%;
       padding: 10px;
       border: none;
       background-color: #ddd;
@@ -383,9 +383,23 @@ h2 {
       font-size: 18px;
 
       input,
-      select {
+      select,
+      textarea {
         width: 80%;
         padding: 10px;
+      }
+    }
+
+    &__text--confirm {
+  
+      input,
+      select,
+      textarea {
+        width: 80%;
+        padding: 10px;
+        border: none;
+        background-color: #ddd;
+        outline: none;
       }
     }
 
@@ -408,7 +422,8 @@ h2 {
       margin: 0 8px;
 
       input,
-      select {
+      select,
+      textarea {
         padding: 12px 30px;
         font-size: 18px;
       }

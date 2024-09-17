@@ -65,7 +65,8 @@ td {
   font-size: 14px;
 }
 .form__text input,
-.form__text select {
+.form__text select,
+.form__text textarea {
   width: 80%;
   padding: 10px;
 }
@@ -109,12 +110,23 @@ td {
     border: 1px solid #325cf8;
     color: #325cf8;
   }
+  .form__button:hover {
+    border: 1px solid #f93;
+    color: #f93;
+    transition: 0.2s;
+  }
   .form__button--danger {
     padding: 8px 30px;
     font-size: 18px;
     background-color: #eee;
     border: 1px solid #f00;
     color: #f00;
+  }
+  .form__button--danger:hover {
+    background-color: #f00;
+    border: 1px solid #f00;
+    color: #eee;
+    transition: 0.2s;
   }
   tr {
     border-top: 1px solid #000;

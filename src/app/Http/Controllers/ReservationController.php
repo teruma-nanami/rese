@@ -10,7 +10,7 @@ use App\Http\Requests\ReservationRequest;
 
 class ReservationController extends Controller
 {
-	public function create(Restaurant $restaurant)
+	public function show(Restaurant $restaurant)
 	{
 		return view('customer.reservation', compact('restaurant'));
 	}
