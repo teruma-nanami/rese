@@ -7,7 +7,7 @@
       @csrf
       <div class="form__text">
         <label for="name">名前</label>
-        <input type="text" name="name" class="form-control" value="{{ old('name', $restaurant->name) }}" required>
+        <input type="text" name="name" value="{{ old('name', $restaurant->name) }}" required>
       </div>
       <div class="form__text">
         <label for="post_code">郵便番号</label>
@@ -15,22 +15,22 @@
       </div>
       <div class="form__text">
         <label for="address">住所</label>
-        <input type="text" name="address" class="form-control" value="{{ old('address', $restaurant->address) }}"
+        <input type="text" name="address" value="{{ old('address', $restaurant->address) }}"
           required>
       </div>
       <div class="form__text">
         <label for="phone_number">電話番号</label>
-        <input type="text" name="phone_number" class="form-control"
+        <input type="text" name="phone_number"
           value="{{ old('phone_number', $restaurant->phone_number) }}" required>
       </div>
       <div class="form__text">
         <label for="image_url">画像URL</label>
-        <input type="text" name="image_url" class="form-control"
+        <input type="text" name="image_url"
           value="{{ old('image_url', $restaurant->image_url) }}">
       </div>
       <div class="form__text">
         <label for="email">メールアドレス</label>
-        <input type="email" name="email" class="form-control" value="{{ old('email', $restaurant->email) }}">
+        <input type="email" name="email" value="{{ old('email', $restaurant->email) }}">
       </div>
       <div class="form__text">
         <label for="area">エリア</label>
@@ -54,12 +54,16 @@
       </div>
       <div class="form__text">
         <label for="owner_id">オーナー</label>
-        <select name="owner_id" class="form-control" required>
+        <select name="owner_id" required>
           @foreach ($owners as $owner)
             <option value="{{ $owner->id }}" {{ $restaurant->owner_id == $owner->id ? 'selected' : '' }}>
               {{ $owner->name }}</option>
           @endforeach
         </select>
+      </div>
+      <div class="form__text">
+        <label for="email">店舗説明</label>
+        <textarea id="detail" name="detail">{{ old('detail', $restaurant->detail) }}</textarea>
       </div>
       <button type="submit" class="form__button">更新</button>
     </form>

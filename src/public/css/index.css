@@ -92,12 +92,14 @@ h2 {
   padding: 10px;
 }
 .form__text--confirm {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin: 20px 0;
   padding: 10px;
   font-size: 14px;
+}
+.form__text--confirm label {
+  display: block;
+  font-size: 14px;
+  margin: 0 0 5px 5px;
 }
 .form__text--confirm input,
 .form__text--confirm select,
@@ -117,6 +119,7 @@ h2 {
   background-color: #eee;
   border: 1px solid #325cf8;
   color: #325cf8;
+  cursor: pointer;
 }
 .form__button:hover {
   border: 1px solid #f60;
@@ -138,6 +141,7 @@ h2 {
   border: none;
   cursor: pointer;
   font-weight: bold;
+  cursor: pointer;
 }
 .form__search button:hover {
   background-color: #eee;
@@ -171,6 +175,7 @@ h2 {
   border-radius: 200px;
   padding: 5px 9px 7px 9px;
   line-height: none;
+  cursor: pointer;
 }
 .reservation-comfirm__button:hover {
   opacity: 0.5;
@@ -231,7 +236,7 @@ h2 {
 }
 
 .thanks__inner {
-  width: 500px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 60px 0 80px;
   background-color: #fff;
@@ -279,6 +284,7 @@ h2 {
   border: #325cf8 1px solid;
   padding: 8px 12px;
   font-size: 20px;
+  cursor: pointer;
 }
 .review__button:hover {
   color: #f93;
@@ -337,6 +343,9 @@ h2 {
     align-items: center;
     margin: 20px 0;
     padding: 10px;
+    font-size: 18px;
+  }
+  .form__text label {
     font-size: 18px;
   }
   .form__text input,

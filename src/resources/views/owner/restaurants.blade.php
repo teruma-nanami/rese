@@ -3,18 +3,12 @@
 @section('content')
   <div class="admin__container">
     <h1>レストラン一覧</h1>
-    @if (session('success'))
-      <div class="alert alert-success">
-        {{ session('success') }}
-      </div>
-    @endif
 
     <table class="owner-table">
       <tr>
         <th>店名</th>
         <th>エリア</th>
         <th>料理の種類</th>
-        <th>オーナー</th>
         <th>編集</th>
         <th>削除</th>
       </tr>
@@ -23,7 +17,6 @@
           <td>{{ $restaurant->name }}</td>
           <td>{{ $restaurant->area }}</td>
           <td>{{ $restaurant->cuisine_type }}</td>
-          <td>{{ $restaurant->owner->name }}</td>
           <td><a href="{{ route('owner.edit-restaurant', $restaurant) }}" class="form__button">編集</a></td>
           <td>
             <form action="{{ route('owner.delete-restaurant', $restaurant) }}" method="POST"
@@ -36,8 +29,5 @@
         </tr>
       @endforeach
     </table>
-    {{-- <div class="page__nav">
-        {{ $users->appends(['date' => $date])->links() }}
-      </div> --}}
   </div>
 @endsection
