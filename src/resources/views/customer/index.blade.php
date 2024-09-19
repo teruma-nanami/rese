@@ -35,8 +35,7 @@
         <div class="card__inner">
           @if ($restaurant->image_url)
             <a href="{{ route('restaurants.show', $restaurant) }}">
-              <img src="{{ asset($restaurant->image_url) }}" alt="{{ $restaurant->name }}">
-              <img src="{{ asset('storage/' . $restaurant->image_url) }}" alt="{{ $restaurant->name }}"> {{-- ファイルアップロードした際には左記のimgリンクを使用する --}}
+              <img src="{{ asset('storage/' . $restaurant->image_url) }}" alt="{{ $restaurant->name }}">
             </a>
           @endif
           <div class="card__text">

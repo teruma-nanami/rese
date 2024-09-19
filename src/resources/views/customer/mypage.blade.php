@@ -31,7 +31,8 @@
                 </table>
                 <div class="change">
                   <a href="{{ route('reservations.edit', $reservation) }}">予約変更</a>
-                  <form action="{{ route('reservations.destroy', $reservation) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');" class="reservation-comfirm__form">
+                  <form action="{{ route('reservations.destroy', $reservation) }}" method="POST"
+                    onsubmit="return confirm('本当に削除しますか？');" class="reservation-comfirm__form">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="reservation-comfirm__button">×</button>
@@ -51,7 +52,7 @@
             @foreach ($favoriteRestaurants as $restaurant)
               <div class="card__inner">
                 @if ($restaurant->image_url)
-                  <img src="{{ asset($restaurant->image_url) }}" alt="{{ $restaurant->name }}">
+                  <img src="{{ asset('storage/' . $restaurant->image_url) }}" alt="{{ $restaurant->name }}">
                 @endif
                 <div class="card__text">
                   <h3>{{ $restaurant->name }}</h3>

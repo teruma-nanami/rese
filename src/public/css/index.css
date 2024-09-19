@@ -28,7 +28,6 @@ h2 {
 .flex__inner {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -150,7 +149,7 @@ h2 {
 }
 
 .reservation-comfirm__card {
-  width: 600px;
+  width: 720px;
   margin: 0 auto;
 }
 .reservation-comfirm__inner {
@@ -411,6 +410,10 @@ h2 {
   }
   .card__inner {
     margin: 0 10px 20px 10px;
+  }
+  .reservation-comfirm__card {
+    width: 600px;
+    margin: 0 auto;
   }
   .reservation-comfirm__inner {
     margin: 20px 0;
