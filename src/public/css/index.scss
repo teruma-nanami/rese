@@ -108,12 +108,15 @@ h2 {
   }
 
   &__text--confirm {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin: 20px 0;
     padding: 10px;
     font-size: 14px;
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin: 0 0 5px 5px;
+    }
 
     input,
     select,
@@ -135,6 +138,7 @@ h2 {
     background-color: #eee;
     border: 1px solid #325cf8;
     color: #325cf8;
+    cursor: pointer;
   }
 
   &__button:hover {
@@ -159,6 +163,7 @@ h2 {
       border: none;
       cursor: pointer;
       font-weight: bold;
+      cursor: pointer;
     }
 
     button:hover {
@@ -200,6 +205,7 @@ h2 {
     border-radius: 200px;
     padding: 5px 9px 7px 9px;
     line-height: none;
+    cursor: pointer;
   }
 
   &__button:hover {
@@ -270,7 +276,7 @@ h2 {
 }
 
 .thanks__inner {
-  width: 500px;
+  max-width: 500px;
   margin: 0 auto;
   padding: 60px 0 80px;
   background-color: #fff;
@@ -323,6 +329,7 @@ h2 {
     border: #325cf8 1px solid;
     padding: 8px 12px;
     font-size: 20px;
+    cursor: pointer;
   }
 
   &__button:hover {
@@ -382,6 +389,10 @@ h2 {
       padding: 10px;
       font-size: 18px;
 
+      label {
+        font-size: 18px;
+      }
+
       input,
       select,
       textarea {
@@ -391,6 +402,16 @@ h2 {
     }
 
     &__text--confirm {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0;
+      padding: 10px;
+      font-size: 18px;
+
+      label {
+        font-size: 18px;
+      }
   
       input,
       select,
