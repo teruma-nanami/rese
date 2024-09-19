@@ -5,7 +5,7 @@
 模擬案件を通して実践に近い開発経験をつむ
 
 ## アプリケーションURL
-http://affiliate-pilotage.com/rese  
+https://runcha.xsrv.jp/  
 fakerにて作成したパスワードはすべて「password」に統一されています
 
 ## 機能一覧
@@ -107,7 +107,7 @@ fakerにて作成したパスワードはすべて「password」に統一され�
 
 
 ## ER図
-![alt text](image.png)
+![ER図](https://github.com/teruma-nanami/rese/blob/main/docs/diagrams/rese.png)
 
 ## 環境構築
 
@@ -117,6 +117,7 @@ fakerにて作成したパスワードはすべて「password」に統一され�
 1. docker compose up -d --build
 
 ### Laravel環境構築
+
 1. docker composer exec php bash
 1. composer install
 1. .env.example ファイルから.envを作成し、環境変数を変更
@@ -124,6 +125,22 @@ fakerにて作成したパスワードはすべて「password」に統一され�
 1. php artisan migrate
 1. php artisan db:seed
 1. php artisan storage:link
+
+### mailhogの環境構築
+.envファイルを以下のように変更してください。
+
+```
+MAIL_MAILER=smtp
+MAIL_HOST=mailhog
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="noreply@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+```
+
+mailhogの起動確認についてはブラウザで http://localhost:8025 にアクセスし、MailHogのWebインターフェースが表示されることを確認します。
 
 ### RememberUserでエラーが発生したとき
 Features.phpクラスにremember-usersを追加します。

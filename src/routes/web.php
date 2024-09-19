@@ -48,6 +48,8 @@ Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])->
 Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])->name('password.reset');
 Route::post('/reset-password', [NewPasswordController::class, 'store'])->name('password.update');
 
+Route::get('/reservations/done', [ReservationController::class, 'done'])->name('reservations.done');
+
 Route::middleware(['auth', 'verified'])->group(function () {
 
 	Route::get('/', function () {
@@ -73,7 +75,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	// 予約のルート
 	Route::get('/reservations/{restaurant}', [ReservationController::class, 'show'])->name('customer.reserve');
 	Route::post('/reservations/{restaurant}', [ReservationController::class, 'store'])->name('reservations.store');
-	Route::get('/reservations/done', [ReservationController::class, 'done'])->name('reservations.done');
 	Route::get('/reservations/{reservation}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');
 	Route::post('/reservations/{reservation}/confirm', [ReservationController::class, 'confirm'])->name('reservations.confirm');
 	Route::patch('/reservations/{reservation}', [ReservationController::class, 'update'])->name('reservations.update');

@@ -28,7 +28,6 @@ h2 {
 .flex__inner {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -146,7 +145,7 @@ h2 {
 }
 
 .reservation-comfirm__card {
-  width: 600px;
+  width: 720px;
   margin: 0 auto;
 }
 .reservation-comfirm__inner {
@@ -341,14 +340,14 @@ h2 {
     font-size: 18px;
   }
   .form__text input,
-.form__text select,
-.form__text textarea {
+  .form__text select,
+  .form__text textarea {
     width: 80%;
     padding: 10px;
   }
   .form__text--confirm input,
-.form__text--confirm select,
-.form__text--confirm textarea {
+  .form__text--confirm select,
+  .form__text--confirm textarea {
     width: 80%;
     padding: 10px;
     border: none;
@@ -372,8 +371,8 @@ h2 {
     margin: 0 8px;
   }
   .form__search input,
-.form__search select,
-.form__search textarea {
+  .form__search select,
+  .form__search textarea {
     padding: 12px 30px;
     font-size: 18px;
   }
@@ -391,6 +390,10 @@ h2 {
   }
   .card__inner {
     margin: 0 10px 20px 10px;
+  }
+  .reservation-comfirm__card {
+    width: 600px;
+    margin: 0 auto;
   }
   .reservation-comfirm__inner {
     margin: 20px 0;
@@ -431,5 +434,4 @@ h2 {
   .reservation__link {
     display: none;
   }
-}
-/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */

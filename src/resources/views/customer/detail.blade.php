@@ -12,8 +12,7 @@
       <div class="detail__card">
         <h1>{{ $restaurant->name }}</h1>
         @if ($restaurant->image_url)
-          <img src="{{ asset($restaurant->image_url) }}" alt="{{ $restaurant->name }}" class="img-fluid">
-          <img src="{{ asset('storage/' . $restaurant->image_url) }}" alt="{{ $restaurant->name }}"> {{-- ファイルアップロードした際には左記のimgリンクを使用する --}}
+          <img src="{{ asset('storage/' . $restaurant->image_url) }}" alt="{{ $restaurant->name }}">
         @endif
         <p>#{{ $restaurant->area }} #{{ $restaurant->cuisine_type }}</p>
         <p>{{ $restaurant->detail }}</p>

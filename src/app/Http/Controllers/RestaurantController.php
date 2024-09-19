@@ -49,7 +49,9 @@ public function confirm(RestaurantRequest $request, $id)
     $data = $request->all();
     $restaurant = Restaurant::findOrFail($id);
 
-    if ($request->hasFile('image')) {
+    if (!$request->hasFile('image')) {
+        $data['image_url'] = $restaurant->image_url ?? '';
+    } else {
         $data['image_url'] = $request->file('image')->store('images', 'public');
     }
 
