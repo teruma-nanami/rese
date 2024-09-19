@@ -6,7 +6,7 @@
     <form method="POST" action="{{ route('password.email') }}" class="form">
       @csrf
       <div class="form__inner">
-        <p>メールアドレスを入力後、認証を行います。</p>
+        <p>パスワードを忘れてしまった場合、メールアドレスを入力してください。</p>
         <div class="form__inner-text">
           <i class="bi bi-envelope-fill"></i>
           <label for="email"></label>
