@@ -41,6 +41,10 @@
         <input type="text" id="cuisine_type" name="cuisine_type"
           value="{{ $data['cuisine_type'] }}" readonly>
       </div>
+      <div class="form__text--confirm">
+        <label for="email">店舗説明</label>
+        <textarea id="detail" name="detail"readonly>{{ $data['detail'] }}</textarea>
+      </div>
       <button type="submit" class="form__button">確定</button>
       <a href="{{ route('owner.edit-restaurant', $restaurant->id) }}" class="form__button--danger">戻る</a>
     </form>
