@@ -16,8 +16,8 @@ class Restaurant extends Model
         'phone_number',
         'image_url',
         'email',
-        'area',
-        'cuisine_type',
+        'area_id',
+        'cuisine_type_id',
         'detail',
         'owner_id',
     ];
@@ -26,9 +26,22 @@ class Restaurant extends Model
     {
         return $this->belongsTo(User::class, 'owner_id');
     }
-    
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
+    public function cuisineType()
+    {
+        return $this->belongsTo(CuisineType::class);
+    }
+
     public function favoritedBy()
     {
         return $this->belongsToMany(User::class, 'favorites');
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }

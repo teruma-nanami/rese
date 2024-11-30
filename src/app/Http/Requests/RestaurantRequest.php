@@ -30,8 +30,6 @@ class RestaurantRequest extends FormRequest
             'phone_number' => ['required', 'string', 'max:15'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
             'email' => ['nullable', 'string', 'email', 'max:255'],
-            'area' => ['required', 'string', 'max:255'],
-            'cuisine_type' => ['required', 'string', 'max:255'],
             'detail' => ['nullable', 'string'],
         ];
     }

@@ -12,9 +12,9 @@
       <div class="detail__card">
         <h1>{{ $restaurant->name }}</h1>
         @if ($restaurant->image_url)
-          <img src="{{ asset('storage/' . $restaurant->image_url) }}" alt="{{ $restaurant->name }}">
+          <img src="{{ $restaurant->image_url }}" alt="{{ $restaurant->name }}">
         @endif
-        <p>#{{ $restaurant->area }} #{{ $restaurant->cuisine_type }}</p>
+        <p>{{ $restaurant->area->name }} #{{ $restaurant->cuisineType->name }}</p>
         <p>{{ $restaurant->detail }}</p>
         <p>〒: {{ $restaurant->post_code }}</p>
         <p>住所: {{ $restaurant->address }}</p>

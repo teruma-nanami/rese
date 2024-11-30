@@ -103,7 +103,6 @@ class AdminController extends Controller
         if ($request->hasFile('image')) {
             $data['image_url'] = $request->file('image')->store('images', 'public');
         }
-        
         $restaurant->update($request->all());
 
         return redirect()->route('admin.edit-restaurant', $restaurant)->with('success', 'レストランが更新されました。');

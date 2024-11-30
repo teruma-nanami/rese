@@ -15,8 +15,8 @@
       @foreach ($restaurants as $restaurant)
         <tr>
           <td>{{ $restaurant->name }}</td>
-          <td>{{ $restaurant->area }}</td>
-          <td>{{ $restaurant->cuisine_type }}</td>
+          <td>{{ $restaurant->area->name }}</td>
+          <td>{{ $restaurant->cuisineType->name }}</td>
           <td>{{ $restaurant->owner->name }}</td>
           <td><a href="{{ route('admin.edit-restaurant', $restaurant) }}" class="form__button">編集</a></td>
           <td>
@@ -30,8 +30,5 @@
         </tr>
       @endforeach
     </table>
-    {{-- <div class="page__nav">
-        {{ $users->appends(['date' => $date])->links() }}
-      </div> --}}
   </div>
 @endsection
