@@ -15,8 +15,8 @@
       @foreach ($restaurants as $restaurant)
         <tr>
           <td>{{ $restaurant->name }}</td>
-          <td>{{ $restaurant->area }}</td>
-          <td>{{ $restaurant->cuisine_type }}</td>
+          <td>{{ $restaurant->area->name }}</td>
+          <td>{{ $restaurant->cuisineType->name }}</td>
           <td><a href="{{ route('owner.edit-restaurant', $restaurant) }}" class="form__button">編集</a></td>
           <td>
             <form action="{{ route('owner.delete-restaurant', $restaurant) }}" method="POST"

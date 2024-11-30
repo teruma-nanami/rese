@@ -24,7 +24,8 @@ class ReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            'comment' => ['nullable', 'string'],
+            'comment' => ['nullable', 'string', 'max:400'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
         ];
     }
 }

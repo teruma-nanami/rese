@@ -12,24 +12,43 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Restaurant::query();
+        $query = Restaurant::query()->with(['area', 'cuisineType']); // ここでwithメソッドを使用
 
         if ($request->filled('keyword')) {
             $query->where('name', 'like', '%' . $request->input('keyword') . '%');
         }
 
         if ($request->filled('area')) {
-            $query->where('area', $request->input('area'));
+            $query->whereHas('area', function ($q) use ($request) {
+                $q->where('name', $request->input('area'));
+            });
         }
 
         if ($request->filled('cuisine_type')) {
-            $query->where('cuisine_type', $request->input('cuisine_type'));
+            $query->whereHas('cuisineType', function ($q) use ($request) {
+                $q->where('name', $request->input('cuisine_type'));
+            });
+        }
+
+        if ($request->filled('sort')) {
+            switch ($request->input('sort')) {
+                case 'rating_high':
+                    $query->withAvg('reviews', 'rating')->orderByDesc('reviews_avg_rating');
+                    break;
+                case 'rating_low':
+                    $query->withAvg('reviews', 'rating')->orderBy('reviews_avg_rating');
+                    break;
+                case 'random':
+                    $query->inRandomOrder();
+                    break;
+            }
         }
 
         $restaurants = $query->get();
 
         return view('customer.index', compact('restaurants'));
     }
+
     public function showProfile()
     {
         $user = Auth::user();

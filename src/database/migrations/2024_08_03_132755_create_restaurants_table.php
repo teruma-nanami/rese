@@ -21,8 +21,8 @@ class CreateRestaurantsTable extends Migration
             $table->string('phone_number');
             $table->string('image_url')->nullable();
             $table->string('email')->nullable();
-            $table->string('area');
-            $table->string('cuisine_type');
+            $table->foreignId('area_id')->constrained('areas')->onDelete('cascade');
+            $table->foreignId('cuisine_type_id')->constrained('cuisine_types')->onDelete('cascade');
             $table->text('detail')->nullable();
             $table->foreignId('owner_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();

@@ -30,8 +30,6 @@ class AdminRequest extends FormRequest
             'phone_number' => ['required', 'string', 'max:15'],
             'image_url' => ['nullable', 'string', 'max:255'],
             'email' => ['nullable', 'string', 'email', 'max:255'],
-            'area' => ['required', 'string', 'max:255'],
-            'cuisine_type' => ['required', 'string', 'max:255'],
             'detail' => ['nullable', 'string'],
             'owner_id' => ['required', 'exists:users,id'],
         ];

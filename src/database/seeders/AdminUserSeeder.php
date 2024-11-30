@@ -25,5 +25,14 @@ class AdminUserSeeder extends Seeder
             'role' => 'admin',
             'email_verified_at' => now(),
         ]);
+        User::create([
+            'name' => 'Customer User',
+            'email' => 'customer@example.com',
+            'phone_number' => '1234567890',
+            'password' => Hash::make('password'), // パスワードをハッシュ化
+            'password_digest' => Hash::make('password'), // パスワードをハッシュ化
+            'role' => 'customer',
+            'email_verified_at' => now(),
+        ]);
     }
 }
