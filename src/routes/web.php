@@ -114,6 +114,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 	Route::post('/admin/restaurants/{restaurant}', [AdminController::class, 'update'])->name('admin.update-restaurant');
 	Route::delete('/admin/users/{user}', [AdminController::class, 'deleteUser'])->name('admin.delete-user');
 	Route::delete('/admin/restaurants/{restaurant}', [AdminController::class, 'destroy'])->name('admin.delete-restaurant');
+	Route::get('/admin/reviews', [ReviewController::class, 'index'])->name('admin.reviews');
 });
 
 Route::middleware(['auth', 'verified', 'owner'])->group(function () {
@@ -126,5 +127,4 @@ Route::middleware(['auth', 'verified', 'owner'])->group(function () {
 	Route::patch('/owner/restaurants/{restaurant}', [RestaurantController::class, 'update'])->name('owner.update-restaurant');
 	Route::delete('/owner/restaurants/{restaurant}', [RestaurantController::class, 'destroy'])->name('owner.delete-restaurant');
 	Route::patch('/owner/{reservation}/status', [ReservationController::class, 'updateStatus'])->name('reservations.updateStatus');
-	Route::get('/owner/reviews', [ReviewController::class, 'index'])->name('owner.reviews');
 });

@@ -12,7 +12,7 @@ class ReviewController extends Controller
     public function index()
     {
         $reviews = Review::with('user', 'restaurant')->get(); // ユーザーと店舗情報を含めてレビューを取得
-        return view('owner.reviews', compact('reviews'));
+        return view('admin.reviews', compact('reviews'));
     }
 
     public function create($restaurantId)

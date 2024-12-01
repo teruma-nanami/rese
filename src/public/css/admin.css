@@ -144,6 +144,15 @@ td {
     color: #eee;
     transition: 0.2s;
   }
+  .admin__table {
+    width: 80%;
+  }
+  .admin__request {
+    width: 25%;
+  }
+  .admin__comment {
+    width: 50%;
+  }
   tr {
     border-top: 1px solid #000;
   }

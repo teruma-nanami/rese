@@ -1,4 +1,4 @@
-<!-- resources/views/owner/reviews/index.blade.php -->
+<!-- resources/views/admin/reviews/index.blade.php -->
 @extends('layouts.owner')
 
 @section('content')
@@ -7,12 +7,12 @@
     @if ($reviews->isEmpty())
       <p>レビューはまだありません。</p>
     @else
-      <table class="owner-table">
+      <table class="admin__table">
         <thead>
           <tr>
             <th>店舗名</th>
             <th>評価</th>
-            <th class="owner-table__comment">コメント</th>
+            <th class="admin__comment">コメント</th>
             <th>投稿日時</th>
           </tr>
         </thead>

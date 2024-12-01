@@ -21,17 +21,6 @@ h1 span {
   margin: 0 20px;
 }
 
-.owner-table {
-  margin: 0 auto;
-  max-width: 1440px;
-}
-.owner-table__request {
-  width: 25%;
-}
-.owner-table__comment {
-  width: 50%;
-}
-
 tr {
   border-top: 1px solid #000;
 }
