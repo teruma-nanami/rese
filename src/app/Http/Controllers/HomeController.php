@@ -1,5 +1,3 @@
-homecontroller
-
 <?php
 
 namespace App\Http\Controllers;

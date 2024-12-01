@@ -193,6 +193,13 @@ h2 {
   opacity: 0.5;
 }
 
+.detail__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1440px;
+  margin: 0 auto;
+}
 .detail__card {
   max-width: 600px;
   margin: 0 auto;

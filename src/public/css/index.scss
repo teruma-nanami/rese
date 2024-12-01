@@ -148,6 +148,7 @@ h2 {
   }
 
   &__search {
+
     input,
     select {
       padding: 4px 10px;
@@ -227,12 +228,24 @@ h2 {
   }
 }
 
-.detail__card {
-  max-width: 600px;
-  margin: 0 auto;
+.detail {
 
-  img {
-    width: 100%;
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  &__card {
+    max-width: 600px;
+    margin: 0 auto;
+
+    img {
+      width: 100%;
+    }
+
   }
 }
 
