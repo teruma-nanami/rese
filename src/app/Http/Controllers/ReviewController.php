@@ -73,16 +73,20 @@ class ReviewController extends Controller
     }
 
     public function destroy($id)
-    {
-        $review = Review::findOrFail($id); // ユーザーまたは管理者のみ削除可能
-        $restaurantId = $review->restaurant_id;
-        if (auth()->id() === $review->user_id || auth()->user()->is_admin) { // 画像を削除
-            if ($review->image_url) {
-                // Storage::disk('public')->delete($review->image_url);
-            }
-            $review->delete();
-            return redirect()->route('restaurants.show', $restaurantId)->with('success', 'レビューを削除しました。');
+{
+    $review = Review::findOrFail($id);
+    $restaurantId = $review->restaurant_id;
+
+    // 管理者またはレビューの作成者のみ削除可能
+    if (auth()->user()->role === 'admin' || auth()->id() === $review->user_id) {
+        if ($review->image_url) {
+            // Storage::disk('public')->delete($review->image_url); // 画像削除の有効化
         }
-        return redirect()->route('restaurants.show', $restaurantId)->with('error', 'レビューを削除する権限がありません。');
+        $review->delete();
+        return redirect()->route('restaurants.show', $restaurantId)->with('success', 'レビューを削除しました。');
     }
+
+    return redirect()->route('restaurants.show', $restaurantId)->with('error', 'レビューを削除する権限がありません。');
+}
+
 }

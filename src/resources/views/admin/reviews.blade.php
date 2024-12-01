@@ -14,6 +14,7 @@
             <th>評価</th>
             <th class="admin__comment">コメント</th>
             <th>投稿日時</th>
+            <th>操作</th>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +31,14 @@
               </td>
               <td>{{ $review->comment }}</td>
               <td>{{ $review->review_date }}</td>
+              <td>
+                <form action="{{ route('reviews.destroy', $review->id) }}" method="POST"
+                  onsubmit="return confirm('このレビューを削除してもよろしいですか？');">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="form__button--danger">削除</button>
+                </form>
+              </td>
             </tr>
           @endforeach
         </tbody>
