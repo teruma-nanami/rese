@@ -42,6 +42,7 @@ td {
 }
 
 
+
 .form {
   max-width: 864px;
   margin: 0 auto 40px;
@@ -125,7 +126,7 @@ td {
       justify-content: space-between;
       align-items: center;
       font-size: 18px;
-    
+
       label {
         font-size: 18px;
       }
@@ -145,6 +146,7 @@ td {
       border: 1px solid #325cf8;
       color: #325cf8;
     }
+
     &__button:hover {
       border: 1px solid #f93;
       color: #f93;
@@ -158,11 +160,26 @@ td {
       border: 1px solid #f00;
       color: #f00;
     }
+
     &__button--danger:hover {
       background-color: #f00;
       border: 1px solid #f00;
       color: #eee;
       transition: .2s;
+    }
+  }
+
+  .admin {
+    &__table {
+      width: 80%;
+    }
+
+    &__request {
+      width: 25%;
+    }
+
+    &__comment {
+      width: 50%;
     }
   }
 

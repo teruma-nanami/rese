@@ -1,5 +1,5 @@
-<!-- resources/views/owner/reviews/index.blade.php -->
-@extends('layouts.owner')
+<!-- resources/views/admin/reviews/index.blade.php -->
+@extends('layouts.admin')
 
 @section('content')
   <div class="container">
@@ -7,13 +7,14 @@
     @if ($reviews->isEmpty())
       <p>レビューはまだありません。</p>
     @else
-      <table class="owner-table">
+      <table class="admin__table">
         <thead>
           <tr>
             <th>店舗名</th>
             <th>評価</th>
-            <th class="owner-table__comment">コメント</th>
+            <th class="admin__comment">コメント</th>
             <th>投稿日時</th>
+            <th>操作</th>
           </tr>
         </thead>
         <tbody>
@@ -30,6 +31,14 @@
               </td>
               <td>{{ $review->comment }}</td>
               <td>{{ $review->review_date }}</td>
+              <td>
+                <form action="{{ route('reviews.destroy', $review->id) }}" method="POST"
+                  onsubmit="return confirm('このレビューを削除してもよろしいですか？');">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="form__button--danger">削除</button>
+                </form>
+              </td>
             </tr>
           @endforeach
         </tbody>
