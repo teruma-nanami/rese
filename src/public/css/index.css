@@ -447,6 +447,9 @@ h2 {
     color: #f60;
     transition: 0.2s;
   }
+  .form__file {
+    width: 40%;
+  }
   .form__search select {
     display: inline;
     padding: 1em 20px;
