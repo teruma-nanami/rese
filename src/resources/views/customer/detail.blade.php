@@ -21,7 +21,7 @@
             @foreach ($reviews as $review)
               <div class="review__card">
                 <div class="review__link">
-                  <p><a href="{{ route('reviews.edit', $review->id) }}">口コミを編集</a></p>
+                  <a href="{{ route('reviews.edit', $review->id) }}">口コミを編集</a>
                   <form action="{{ route('reviews.destroy', $review->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -71,7 +71,7 @@
           <button type="submit" class="form__button">予約する</button>
         </form>
         <h3>入力内容の確認</h3>
-        <div id="reservation_summary">
+        <div id="reservation_summary" class="reservation__summary">
           <p>店舗: {{ $restaurant->name }}</p>
           <p>予約日: <span id="summary_date"></span></p>
           <p>予約時間: <span id="summary_time"></span></p>
