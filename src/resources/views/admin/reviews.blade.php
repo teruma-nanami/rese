@@ -1,5 +1,5 @@
 <!-- resources/views/admin/reviews/index.blade.php -->
-@extends('layouts.owner')
+@extends('layouts.admin')
 
 @section('content')
   <div class="container">
