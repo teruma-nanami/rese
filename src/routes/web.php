@@ -16,6 +16,7 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\CsvImportController;
 
 
 /*
@@ -115,6 +116,9 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 	Route::delete('/admin/users/{user}', [AdminController::class, 'deleteUser'])->name('admin.delete-user');
 	Route::delete('/admin/restaurants/{restaurant}', [AdminController::class, 'destroy'])->name('admin.delete-restaurant');
 	Route::get('/admin/reviews', [ReviewController::class, 'index'])->name('admin.reviews');
+	// csvのインポート
+	Route::get('/import', [CsvImportController::class, 'showImportForm'])->name('import.csv');
+	Route::post('/import', [CsvImportController::class, 'import'])->name('import.process');
 });
 
 Route::middleware(['auth', 'verified', 'owner'])->group(function () {
