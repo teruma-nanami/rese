@@ -18,15 +18,14 @@ class ReviewController extends Controller
     public function create($restaurantId)
     {
         $restaurant = Restaurant::findOrFail($restaurantId);
-
-        // ユーザーがその店舗を予約したことがあるかを確認
-        $hasReservation = Reservation::where('user_id', auth()->id())
+        $userId = auth()->id();
+        // 重複レビューのチェック
+        $existingReview = Review::where('user_id', $userId)
             ->where('restaurant_id', $restaurantId)
-            ->where('status', 'completed')
-            ->exists();
+            ->first();
 
-        if (!$hasReservation) {
-            return redirect()->route('restaurants.show', $restaurantId)->with('error', 'この店舗を訪れたことがないため、レビューを書くことができません。');
+        if ($existingReview) {
+            return redirect()->route('restaurants.show', $restaurantId)->with('error', 'この店舗には既にレビューを投稿しています。');
         }
 
         return view('customer.review', compact('restaurant'));
@@ -47,6 +46,7 @@ class ReviewController extends Controller
     {
         $review = Review::findOrFail($id);
         $restaurantId = $review->restaurant_id;
+
         if ($review->user_id !== auth()->id()) {
             return redirect()->route('restaurants.show', $restaurantId)->with('error', 'このレビューを編集する権限がありません。');
         }
