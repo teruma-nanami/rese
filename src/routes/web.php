@@ -86,6 +86,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	// レビューページへのルート
 	Route::get('/reviews/{restaurant}', [ReviewController::class, 'create'])->name('reviews.create');
 	Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+	Route::get('/reviews/edit/{review}', [ReviewController::class, 'edit'])->name('reviews.edit');
+	Route::put('/reviews/edit/{review}', [ReviewController::class, 'update'])->name('reviews.update');
+	Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+
 
 	// お気に入り登録
 	Route::post('/favorites/toggle/{restaurant}', [FavoriteController::class, 'toggle'])->name('favorites.toggle');
