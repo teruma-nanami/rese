@@ -36,7 +36,7 @@ class HomeController extends Controller
 					$query->withAvg('reviews', 'rating')->orderByDesc('reviews_avg_rating');
 					break;
 				case 'rating_low':
-					$query->withAvg('reviews', 'rating')->orderBy('reviews_avg_rating');
+					$query->withAvg('reviews', 'rating')->orderByRaw('IFNULL(reviews_avg_rating, 100), reviews_avg_rating ASC');
 					break;
 				case 'random':
 					$query->inRandomOrder();
