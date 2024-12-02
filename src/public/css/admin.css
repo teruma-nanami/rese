@@ -116,7 +116,7 @@ td {
   .form__text input,
   .form__text select,
   .form__text textarea {
-    width: 80%;
+    width: 75%;
     padding: 10px;
   }
   .form__button {
