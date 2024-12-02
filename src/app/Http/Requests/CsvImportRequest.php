@@ -40,25 +40,27 @@ class CsvImportRequest extends FormRequest
 
     public function validateEachRow($rows, $header)
     {
-        $errors = [];
+        $hasError = false;
         foreach ($rows as $key => $row) {
             $row = array_combine($header, $row);
             $validator = Validator::make($row, [
-                'name' => 'required|string|max:50',
+                'name' => 'required|string|max:255',
                 'post_code' => 'required|string|max:10',
                 'address' => 'required|string|max:255',
                 'phone_number' => 'required|string|max:15',
-                'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,', 'max:2048'],
                 'email' => 'nullable|email|max:255',
-                'area_id' => 'required|integer|exists:areas,id',
-                'cuisine_type_id' => 'required|integer|exists:cuisine_types,id',
-                'detail' => 'nullable|string|max:400',
+                'area_id' => 'required|integer|between:1,3',
+                'cuisine_type_id' => 'required|integer|between:1,5',
+                'detail' => 'nullable|string',
                 'owner_id' => 'required|integer|exists:users,id',
             ]);
+
             if ($validator->fails()) {
-                $errors[$key + 1] = $validator->errors()->all();
+                $hasError = true;
+                break;
             }
         }
-        return $errors;
+
+        return $hasError ? 'CSVファイルにエラーがあります。正しい形式で入力してください。' : null;
     }
 }

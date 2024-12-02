@@ -23,15 +23,11 @@ class CsvImportController extends Controller
         $header = array_shift($csvData); // ヘッダー行を取得
 
         // 各行のバリデーションを実行
-        $errors = $request->validateEachRow($csvData, $header);
+        $error = $request->validateEachRow($csvData, $header);
 
         // バリデーションエラーが存在する場合はビューにエラーを渡す
-        if (!empty($errors)) {
-            $errorMessage = '';
-            foreach ($errors as $line => $errorMessages) {
-                $errorMessage .= "行 {$line}: " . implode(', ', $errorMessages) . "\n";
-            }
-            return redirect()->route('import.csv')->withErrors(['csv_errors' => $errors])->withInput();
+        if ($error) {
+            return redirect()->route('import.csv')->withErrors(['csv_error' => $error])->withInput();
         }
 
         // データベースに保存
