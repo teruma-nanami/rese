@@ -47,6 +47,7 @@
           <li><a href="{{ route('admin.restaurants') }}">レストラン一覧</a></li>
           <li><a href="{{ route('admin.create-restaurant') }}">レストラン作成</a></li>
           <li><a href="{{ route('admin.reviews') }}">レビュー一覧</a></li>
+          <li><a href="{{ route('import.csv') }}">CSVファイルのインポート</a></li>
           <li>
             <form action="/logout" method="POST">
               @csrf
