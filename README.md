@@ -169,7 +169,7 @@ vendor/laravel/fortify/src/Features.phpにあるFeaturesクラスを確認
 - **post_code**: 郵便番号（例: "123-4567"）
 - **address**: 住所（例: "Tokyo"）
 - **phone_number**: 電話番号（例: "03-1234-5678"）
-- **image_url**: 画像URL（例: "img/sample.jpg"）
+- **image_url**: 画像URL（例: "img/sample.png"）
 - **email**: メールアドレス（例: "restaurantA@example.com"）
 - **area_id**: エリアID（例: 1）
   - 1: エリア1
@@ -190,5 +190,5 @@ vendor/laravel/fortify/src/Features.phpにあるFeaturesクラスを確認
 
 ```csv
 name,post_code,address,phone_number,image_url,email,area_id,cuisine_type_id,detail,owner_id
-Restaurant A,123-4567,Tokyo,03-1234-5678,img/sample.jpg,restaurantA@example.com,1,1,Delicious food!,1
-Restaurant B,987-6543,Osaka,06-9876-5432,img/sample.jpg,restaurantB@example.com,2,2,Famous for its sushi!,2
+Restaurant A,123-4567,Tokyo,03-1234-5678,img/sample.png,restaurantA@example.com,1,1,Delicious food!,1
+Restaurant B,987-6543,Osaka,06-9876-5432,img/sample.png,restaurantB@example.com,2,2,Famous for its sushi!,2
