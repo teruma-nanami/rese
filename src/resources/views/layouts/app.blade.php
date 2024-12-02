@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
+  @yield('css')
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
@@ -71,6 +72,8 @@
   </footer>
   <script src="{{ asset('js/humberger.js') }}"></script>
   <script src="{{ asset('js/confirm.js') }}"></script>
+  <script src="{{ asset('js/star.js') }}"></script>
+  <script src="{{ asset('js/count.js') }}"></script>
 </body>
 
 </html>

@@ -40,7 +40,7 @@ class CsvImportRequest extends FormRequest
 
     public function validateEachRow($rows, $header)
     {
-        $hasError = false;
+        $errorMessage = 'CSVファイルにエラーがあります。正しい形式で入力してください。';
         foreach ($rows as $key => $row) {
             $row = array_combine($header, $row);
             $validator = Validator::make($row, [
@@ -48,19 +48,31 @@ class CsvImportRequest extends FormRequest
                 'post_code' => 'required|string|max:10',
                 'address' => 'required|string|max:255',
                 'phone_number' => 'required|string|max:15',
-                'email' => 'nullable|email|max:255',
+                'image_url' => [
+                    'required',
+                    'string',
+                    function ($attribute, $value, $fail) {
+                        $allowedExtensions = ['jpg', 'jpeg', 'png'];
+                        $extension = pathinfo($value, PATHINFO_EXTENSION);
+
+                        if (!in_array(strtolower($extension), $allowedExtensions)) {
+                            $fail($attribute . 'はjpgまたはpng形式の画像である必要があります。');
+                        }
+                    },
+                ],
+                'email' => 'required|email|max:255',
                 'area_id' => 'required|integer|exists:areas,id',
                 'cuisine_type_id' => 'required|integer|exists:cuisine_types,id',
-                'detail' => 'nullable|string',
+                'detail' => 'required|string',
                 'owner_id' => 'required|integer|exists:users,id',
             ]);
 
             if ($validator->fails()) {
-                $hasError = true;
-                break;
+                $errors = $validator->errors()->all();
+                return implode(', ', $errors);
             }
         }
 
-        return $hasError ? 'CSVファイルにエラーがあります。正しい形式で入力してください。' : null;
+        return null;
     }
 }

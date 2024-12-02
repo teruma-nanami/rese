@@ -5,7 +5,7 @@
 模擬案件を通して実践に近い開発経験をつむ
 
 ## アプリケーションURL
-https://runcha.xsrv.jp/  
+https://rese.nanami-teruma.com/  
 fakerにて作成したパスワードはすべて「password」に統一されています
 
 ## 機能一覧
@@ -18,6 +18,10 @@ fakerにて作成したパスワードはすべて「password」に統一され�
     - 飲食店予約機能
     - 飲食店お気に入り登録・解除機能
     - 飲食店レビュー機能
+    - 評価によるソート機能
+        - ランダム
+        - 評価の高い順
+        - 評価の低い順（評価がないレストランは最後尾に表示）
 - オーナー機能一覧
     - 予約管理機能
     - レストラン新規追加機能
@@ -26,6 +30,7 @@ fakerにて作成したパスワードはすべて「password」に統一され�
     - オーナー役割変更機能
     - レストラン新規追加機能
     - レストラン編集・削除機能
+    - CSVファイルのインポート
 
 ## 使用技術(実行環境)
 
@@ -152,3 +157,38 @@ vendor/laravel/fortify/src/Features.phpにあるFeaturesクラスを確認
     }
 ```
 上記を追加してください
+
+## インポート用CSVファイルのフォーマット
+
+インポートするCSVファイルは、以下のフォーマットに従って記述してください。
+
+
+各列の説明は以下の通りです：
+
+- **name**: レストランの名前（例: "Restaurant A"）
+- **post_code**: 郵便番号（例: "123-4567"）
+- **address**: 住所（例: "Tokyo"）
+- **phone_number**: 電話番号（例: "03-1234-5678"）
+- **image_url**: 画像URL（例: "img/sample.png"）
+- **email**: メールアドレス（例: "restaurantA@example.com"）
+- **area_id**: エリアID（例: 1）
+  - 1: エリア1
+  - 2: エリア2
+  - 3: エリア3
+- **cuisine_type_id**: 料理の種類ID（例: 1）
+  - 1: 和食
+  - 2: 洋食
+  - 3: 中華
+  - 4: イタリアン
+  - 5: その他
+- **detail**: 詳細（例: "Delicious food!"）
+- **owner_id**: オーナーID（例: 1）
+
+### サンプルCSVファイル
+
+以下は、インポートするCSVファイルのサンプルです。
+
+```csv
+name,post_code,address,phone_number,image_url,email,area_id,cuisine_type_id,detail,owner_id
+Restaurant A,123-4567,Tokyo,03-1234-5678,img/sample.png,restaurantA@example.com,1,1,Delicious food!,1
+Restaurant B,987-6543,Osaka,06-9876-5432,img/sample.png,restaurantB@example.com,2,2,Famous for its sushi!,2

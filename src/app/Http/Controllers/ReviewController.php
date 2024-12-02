@@ -6,6 +6,8 @@ use App\Models\Review;
 use App\Models\Restaurant;
 use App\Models\Reservation;
 use App\Http\Requests\ReviewRequest;
+use Illuminate\Support\Facades\Storage;
+
 
 class ReviewController extends Controller
 {
@@ -62,7 +64,7 @@ class ReviewController extends Controller
         if ($request->hasFile('image')) {
             // 古い画像を削除
             if ($review->image_url) {
-                // Storage::disk('public')->delete($review->image_url);
+                Storage::disk('public')->delete($review->image_url);
             }
             $data['image_url'] = $request->file('image')->store('reviews', 'public');
         }
@@ -80,7 +82,7 @@ class ReviewController extends Controller
     // 管理者またはレビューの作成者のみ削除可能
     if (auth()->user()->role === 'admin' || auth()->id() === $review->user_id) {
         if ($review->image_url) {
-            // Storage::disk('public')->delete($review->image_url); // 画像削除の有効化
+            Storage::disk('public')->delete($review->image_url); // 画像削除の有効化
         }
         $review->delete();
         return redirect()->route('restaurants.show', $restaurantId)->with('success', 'レビューを削除しました。');
