@@ -35,14 +35,6 @@
           <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
           <input type="hidden" name="review_date" value="{{ now() }}">
           <div class="form__text">
-            {{-- <label for="rating">体験を評価してください</label>
-            <select name="rating" id="rating">
-              <option value="1">☆</option>
-              <option value="2">☆☆</option>
-              <option value="3">☆☆☆</option>
-              <option value="4">☆☆☆☆</option>
-              <option value="5">☆☆☆☆☆</option>
-            </select> --}}
             <label for="rating">体験を評価してください</label>
             <div class="rating">
               <input type="radio" name="rating" id="rating5" value="5"><label for="rating5">★</label>
@@ -51,7 +43,6 @@
               <input type="radio" name="rating" id="rating2" value="2"><label for="rating2">★</label>
               <input type="radio" name="rating" id="rating1" value="1"><label for="rating1">★</label>
             </div>
-
           </div>
           <div class="form__text">
             <label for="comment">口コミを投稿</label>

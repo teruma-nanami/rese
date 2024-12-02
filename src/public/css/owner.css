@@ -21,6 +21,10 @@ h1 span {
   margin: 0 20px;
 }
 
+table {
+  margin: 0 auto;
+}
+
 tr {
   border-top: 1px solid #000;
 }

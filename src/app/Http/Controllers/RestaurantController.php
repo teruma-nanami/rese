@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Restaurant;
+use App\Models\Area;
+use App\Models\CuisineType;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RestaurantRequest;
@@ -18,7 +20,9 @@ class RestaurantController extends Controller
 
     public function create()
     {
-        return view('owner.create_restaurant');
+        $areas = Area::all();
+        $cuisineTypes = CuisineType::all();
+        return view('owner.create_restaurant', compact('areas', 'cuisineTypes'));
     }
 
     public function store(RestaurantRequest $request)
@@ -41,34 +45,51 @@ class RestaurantController extends Controller
             return redirect()->route('owner.create-restaurant')->with('error', '権限がありません。');
         }
 
-        return view('owner.edit_restaurant', compact('restaurant'));
+        $areas = Area::all();
+        $cuisineTypes = CuisineType::all();
+
+        return view('owner.edit_restaurant', compact('restaurant', 'areas', 'cuisineTypes'));
     }
 
-public function confirm(RestaurantRequest $request, $id)
-{
-    $data = $request->all();
-    $restaurant = Restaurant::findOrFail($id);
+    public function confirm(RestaurantRequest $request, $id)
+    {
+        $data = $request->all();
+        $restaurant = Restaurant::findOrFail($id);
 
-    if (!$request->hasFile('image')) {
-        $data['image_url'] = $restaurant->image_url ?? '';
-    } else {
-        $data['image_url'] = $request->file('image')->store('images', 'public');
+        if (!$request->hasFile('image')) {
+            $data['image_url'] = $restaurant->image_url ?? '';
+        } else {
+            $data['image_url'] = $request->file('image')->store('images', 'public');
+        }
+
+        // エリアと料理の種類のIDをデータに追加
+        $data['area_id'] = $request->input('area_id');
+        $data['cuisine_type_id'] = $request->input('cuisine_type_id');
+
+        $areas = Area::all();
+        $cuisineTypes = CuisineType::all();
+
+        return view('owner.confirm_restaurant', compact('data', 'restaurant', 'areas', 'cuisineTypes'));
     }
 
-    return view('owner.confirm_restaurant', compact('data', 'restaurant'));
-}
+    public function update(RestaurantRequest $request, $id)
+    {
+        // $data = $request->all();
+        // dd($data);
+        $restaurant = Restaurant::findOrFail($id);
+        $data = $request->only(['name', 'post_code', 'address', 'phone_number', 'image_url', 'email', 'area_id', 'cuisine_type_id', 'detail']);
 
-public function update(RestaurantRequest $request, $id)
-{
-    $restaurant = Restaurant::findOrFail($id);
-    $data = $request->all();
+        if ($request->hasFile('image')) {
+            $data['image_url'] = $request->file('image')->store('images', 'public');
+        }
+
+        $restaurant->update($data);
+
+        return redirect()->route('owner.edit-restaurant', $restaurant->id)->with('success', 'レストランが更新されました。');
+    }
 
 
 
-    $restaurant->update($data);
-
-    return redirect()->route('owner.edit-restaurant', $restaurant->id)->with('success', 'レストランが更新されました。');
-}
 
     public function destroy(Restaurant $restaurant)
     {

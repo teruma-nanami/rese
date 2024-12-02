@@ -3,8 +3,7 @@
 @section('content')
   <div class="admin__container">
     <h1>レストラン一覧</h1>
-
-    <table class="owner-table">
+    <table>
       <tr>
         <th>店名</th>
         <th>エリア</th>

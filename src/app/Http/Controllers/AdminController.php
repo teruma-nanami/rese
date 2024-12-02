@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Area;
+use App\Models\CuisineType;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -73,8 +75,10 @@ class AdminController extends Controller
 
     public function create()
     {
+        $areas = Area::all();
+        $cuisineTypes = CuisineType::all();
         $owners = User::where('role', 'restaurant_owner')->get();
-        return view('admin.create_restaurant', compact('owners'));
+        return view('admin.create_restaurant', compact('owners', 'areas', 'cuisineTypes'));
     }
 
     public function store(AdminRequest $request)
@@ -93,8 +97,10 @@ class AdminController extends Controller
 
     public function edit(Restaurant $restaurant)
     {
+        $areas = Area::all();
+        $cuisineTypes = CuisineType::all();
         $owners = User::where('role', 'restaurant_owner')->get();
-        return view('admin.edit_restaurant', compact('restaurant', 'owners'));
+        return view('admin.edit_restaurant', compact('restaurant', 'owners', 'areas', 'cuisineTypes'));
     }
 
     public function update(AdminRequest $request, Restaurant $restaurant)
