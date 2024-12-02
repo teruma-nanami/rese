@@ -20,27 +20,31 @@
       </div>
       <div class="form__text--confirm">
         <label for="phone_number">電話番号</label>
-        <input type="text" id="phone_number" name="phone_number"
-          value="{{ $data['phone_number'] }}" readonly>
+        <input type="text" id="phone_number" name="phone_number" value="{{ $data['phone_number'] }}" readonly>
       </div>
       <div class="form__text--confirm">
         <label for="image_url">画像URL</label>
-        <input type="text" id="image_url" name="image_url" value="{{ $data['image_url'] }}"
-          readonly>
+        <input type="text" id="image_url" name="image_url" value="{{ $data['image_url'] }}" readonly>
       </div>
       <div class="form__text--confirm">
         <label for="email">メールアドレス</label>
         <input type="email" id="email" name="email" value="{{ $data['email'] }}" readonly>
       </div>
-      <div class="form__text--confirm">
+
+    <!-- 確認画面用のフィールド -->
+    <div class="form__text--confirm">
         <label for="area">エリア</label>
-        <input type="text" id="area" name="area" value="{{ $data['area'] }}" readonly>
-      </div>
-      <div class="form__text--confirm">
+        <input type="text" id="area" name="area" value="{{ $areas->find($data['area_id'])->name }}" readonly>
+        <input type="hidden" name="area_id" value="{{ $data['area_id'] }}">
+    </div>
+    <div class="form__text--confirm">
         <label for="cuisine_type">料理の種類</label>
-        <input type="text" id="cuisine_type" name="cuisine_type"
-          value="{{ $data['cuisine_type'] }}" readonly>
-      </div>
+        <input type="text" id="cuisine_type" name="cuisine_type" value="{{ $cuisineTypes->find($data['cuisine_type_id'])->name }}" readonly>
+        <input type="hidden" name="cuisine_type_id" value="{{ $data['cuisine_type_id'] }}">
+    </div>
+
+
+
       <div class="form__text--confirm">
         <label for="email">店舗説明</label>
         <textarea id="detail" name="detail"readonly>{{ $data['detail'] }}</textarea>

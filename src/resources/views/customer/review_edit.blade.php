@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('css')
+  <link rel="stylesheet" href="{{ asset('css/review.css') }}" />
+@endsection
+
 @section('content')
   <div class="container">
     <h1>口コミを編集</h1>
@@ -8,29 +12,29 @@
       @method('PUT')
 
       <div class="form__text">
-        <label for="rating">評価:</label>
-        <input type="number" name="rating" value="{{ $review->rating }}" min="1" max="5" required>
+        <label for="rating">体験を再評価してください</label>
+        <div class="rating">
+          <input type="radio" name="rating" id="rating5" value="5"><label for="rating5">★</label>
+          <input type="radio" name="rating" id="rating4" value="4"><label for="rating4">★</label>
+          <input type="radio" name="rating" id="rating3" value="3" checked><label for="rating3">★</label>
+          <input type="radio" name="rating" id="rating2" value="2"><label for="rating2">★</label>
+          <input type="radio" name="rating" id="rating1" value="1"><label for="rating1">★</label>
+        </div>
       </div>
 
       <div class="form__text">
-        <label for="comment">コメント:</label>
-        <textarea name="comment">{{ $review->comment }}</textarea>
+        <label for="comment">口コミを投稿</label>
+        <textarea name="comment" id="comment" rows="8" placeholder="カジュアルな夜のお出かけにおすすめのスポット"></textarea>
+        <div id="charCount" class="comment__count">0/400（最高文字数）</div>
       </div>
-
-      <div class="form__text">
-        <label for="review_date">レビュー日:</label>
-        <input type="date" name="review_date" value="{{ $review->review_date }}" required>
-      </div>
-
-      <div class="form__text">
-        <label for="image">画像:</label>
-        <input type="file" name="image" class="form__file">
+      <div class="form__inner-file">
+        <p>画像の変更</p>
         @if ($review->image_url)
           <img src="{{ Storage::url($review->image_url) }}" alt="現在の画像" width="300">
         @endif
+        <input type="file" name="image" id="image">
       </div>
-
-      <button type="submit">レビューを更新する</button>
+      <button type="submit" class="update__button">レビューを更新する</button>
     </form>
   </div>
 @endsection

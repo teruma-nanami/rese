@@ -58,6 +58,21 @@
   text-align: right;
 }
 
+.update__button {
+  background-color: #fff;
+  border: none;
+  color: #000;
+  border-radius: 50px;
+  width: 100%;
+  padding: 12px 0;
+  margin: 20px 0;
+  font-size: 20px;
+}
+
+.update__button:hover {
+  color: #f93;
+}
+
 @media (min-width: 768px) {
   .flex__inner {
     margin-bottom: 80px;
