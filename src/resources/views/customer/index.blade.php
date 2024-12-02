@@ -53,11 +53,11 @@
             <p>{{ $restaurant->area->name }} #{{ $restaurant->cuisineType->name }}</p>
             <div class="card__link">
               <a href="{{ route('restaurants.show', $restaurant) }}">詳しくみる</a>
-              <form action="{{ route('favorites.toggle', $restaurant) }}" method="POST" style="display:inline;">
+              <form action="{{ route('favorites.toggle', $restaurant) }}" method="POST" class="favorite__form">
                 @csrf
                 <button type="submit"
                   class="favorite-button {{ auth()->user()->favorites->contains($restaurant->id)? 'favorite__button--red': 'favorite__button--gray' }}">
-                  ❤️
+                  <i class="bi bi-heart-fill"></i>
                 </button>
               </form>
             </div>

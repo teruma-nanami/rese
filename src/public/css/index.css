@@ -245,6 +245,9 @@ h2 {
   display: flex;
   flex-wrap: wrap;
 }
+.favorite__form {
+  display: inline;
+}
 
 .thanks__inner {
   max-width: 500px;
@@ -299,6 +302,7 @@ h2 {
 }
 .review__link a {
   font-size: 14px;
+  text-decoration: underline;
   color: #000;
 }
 .review__link a:hover {
@@ -313,6 +317,7 @@ h2 {
           appearance: none;
   border: none;
   background: none;
+  text-decoration: underline;
   padding: 0 10px;
   color: #000;
   font-size: 14px;
@@ -320,6 +325,10 @@ h2 {
 }
 .review__link button:hover {
   color: #f93;
+}
+.review__form {
+  width: 600px;
+  padding-left: 40px;
 }
 .review__rating--add {
   color: #325cf8;
@@ -330,26 +339,48 @@ h2 {
   font-size: 28px;
 }
 .review__button {
-  display: block;
-  width: 200px;
-  margin: 0 auto;
-  text-align: center;
-  color: #325cf8;
-  border: #325cf8 1px solid;
-  padding: 8px 12px;
-  font-size: 20px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  background: none;
+  text-decoration: underline;
+  padding: 0 10px;
+  color: #000;
+  font-size: 16px;
   cursor: pointer;
 }
 .review__button:hover {
   color: #f93;
-  border: #f93 1px solid;
   transition: 0.3s;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.rating input {
+  display: none;
+}
+.rating label {
+  font-size: 28px;
+  color: #ddd;
+  cursor: pointer;
+}
+.rating input:checked ~ label {
+  color: #325cf8;
+}
+
+.rating > input:hover ~ label,
+.rating > input:hover ~ label ~ label {
+  color: #325cf8;
 }
 
 .favorite__button--gray {
   position: absolute;
-  bottom: -22px;
-  right: 0px;
+  bottom: -12px;
+  right: 10px;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -357,7 +388,7 @@ h2 {
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 40px;
+  font-size: 36px;
 }
 
 .favorite__button--gray:hover {
@@ -369,15 +400,15 @@ h2 {
 
 .favorite__button--red {
   position: absolute;
-  bottom: -22px;
-  right: 0px;
+  bottom: -12px;
+  right: 10px;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
   color: #dc3545;
   background-color: #fff;
   border: none;
-  font-size: 40px;
+  font-size: 36px;
   cursor: pointer;
 }
 
@@ -411,7 +442,7 @@ h2 {
   .form__text input,
   .form__text select,
   .form__text textarea {
-    width: 80%;
+    width: 75%;
     padding: 10px;
   }
   .form__text--confirm {
@@ -520,6 +551,9 @@ h2 {
     background-color: #f93;
     color: #fff;
     transition: 0.2s;
+  }
+  .rating label {
+    font-size: 36px;
   }
   .reservation__link {
     display: none;
