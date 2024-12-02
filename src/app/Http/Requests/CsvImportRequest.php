@@ -49,8 +49,8 @@ class CsvImportRequest extends FormRequest
                 'address' => 'required|string|max:255',
                 'phone_number' => 'required|string|max:15',
                 'email' => 'nullable|email|max:255',
-                'area_id' => 'required|integer|between:1,3',
-                'cuisine_type_id' => 'required|integer|between:1,5',
+                'area_id' => 'required|integer|exists:areas,id',
+                'cuisine_type_id' => 'required|integer|exists:cuisine_types,id',
                 'detail' => 'nullable|string',
                 'owner_id' => 'required|integer|exists:users,id',
             ]);
