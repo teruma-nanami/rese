@@ -24,7 +24,7 @@
 
       <div class="form__text">
         <label for="comment">口コミを投稿</label>
-        <textarea name="comment" id="comment" rows="8" placeholder="カジュアルな夜のお出かけにおすすめのスポット"></textarea>
+        <textarea name="comment" id="comment" rows="8" placeholder="カジュアルな夜のお出かけにおすすめのスポット">{{ old('comment', $review->comment) }}</textarea>
         <div id="charCount" class="comment__count">0/400（最高文字数）</div>
       </div>
       <div class="form__inner-file">
