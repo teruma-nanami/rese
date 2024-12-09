@@ -14,11 +14,11 @@
       <div class="form__text">
         <label for="rating">体験を再評価してください</label>
         <div class="rating">
-          <input type="radio" name="rating" id="rating5" value="5"><label for="rating5">★</label>
-          <input type="radio" name="rating" id="rating4" value="4"><label for="rating4">★</label>
-          <input type="radio" name="rating" id="rating3" value="3" checked><label for="rating3">★</label>
-          <input type="radio" name="rating" id="rating2" value="2"><label for="rating2">★</label>
-          <input type="radio" name="rating" id="rating1" value="1"><label for="rating1">★</label>
+          <input type="radio" name="rating" id="rating5" value="5" {{ $review->rating == 5 ? 'checked' : '' }}><label for="rating5">★</label>
+          <input type="radio" name="rating" id="rating4" value="4" {{ $review->rating == 4 ? 'checked' : '' }}><label for="rating4">★</label>
+          <input type="radio" name="rating" id="rating3" value="3" {{ $review->rating == 3 ? 'checked' : '' }}><label for="rating3">★</label>
+          <input type="radio" name="rating" id="rating2" value="2" {{ $review->rating == 2 ? 'checked' : '' }}><label for="rating2">★</label>
+          <input type="radio" name="rating" id="rating1" value="1" {{ $review->rating == 1 ? 'checked' : '' }}><label for="rating1">★</label>
         </div>
       </div>
 
